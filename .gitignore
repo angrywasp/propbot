@@ -1,0 +1,7 @@
+build
+**/bin
+**/obj
+
+pcb/*.*-bak
+pcb/*-cache.lib
+pcb/fp-info-cache
