@@ -1,7 +1,8 @@
 #include "simpletools.h"
 #include "./SPI.h"
-const int SPI_CHIP_SELECT = 0;
+#include "./refs.h"
 
+const int SPI_CHIP_SELECT = 0;
 
 static int spi_IdleCLK;
 static int spi_ActiveCLK;
@@ -23,40 +24,40 @@ void spi_init(int mosi, int miso, int clk)
     spi_misoPin = miso;
     spi_clkPin = clk;
 
-    set_direction(mosi, 1);
-    set_direction(miso, 0);
-    set_direction(clk, 1);
+    dir_out(mosi);
+    dir_in(miso);
+    dir_out(clk);
 
-    set_output(mosi, 0);
-    set_output(clk, spi_IdleCLK);
+    lo(mosi);
+    out(clk, spi_IdleCLK);
 }
 
 uint16_t spi_transfer(uint16_t tx)
 {
     uint16_t rx = 0;
 
-    for (int bitpos = 15; bitpos >= 0; bitpos--)
+    for (int i = 15; i >= 0; i--)
     {
         if (spi_PhaseCLK == 0)
-            set_output(spi_mosiPin, tx >> bitpos);
+            out(spi_mosiPin, tx >> i);
 
-        pause(1);
-        set_output(spi_clkPin, spi_ActiveCLK);
+        //pause(1);
+        out(spi_clkPin, spi_ActiveCLK);
 
         if (spi_PhaseCLK == 0)
         {
             if (get_state(spi_misoPin) == 1)
-                rx |= 1 << bitpos;
+                rx |= 1 << i;
         }
         else
-            set_output(spi_mosiPin, tx >> bitpos);
+            out(spi_mosiPin, tx >> i);
 
-        pause(1);
-        set_output(spi_clkPin, spi_IdleCLK);
+        //pause(1);
+        out(spi_clkPin, spi_IdleCLK);
 
         if (spi_PhaseCLK == 1)
-            if (get_state(spi_misoPin) == 1)
-                rx |= 1 << bitpos;
+            if (in(spi_misoPin) == 1)
+                rx |= 1 << i;
     }
 
     return rx;
@@ -64,22 +65,22 @@ uint16_t spi_transfer(uint16_t tx)
 
 void spi_select_chip(int pin)
 {
-    set_direction(pin, 1);
-    set_output(pin, SPI_CHIP_SELECT);
-    pause(1);
+    dir_out(pin);
+    out(pin, SPI_CHIP_SELECT);
+    //pause(1);
 }
 
 void spi_deselect_chip(int pin)
 {
-    set_output(pin, !SPI_CHIP_SELECT);
-    pause(1);
+    out(pin, !SPI_CHIP_SELECT);
+    //pause(1);
 }
 
 void spi_wake_up(int pin)
 {
-    set_direction(pin, 1);
-    set_output(pin, !SPI_CHIP_SELECT);
-    pause(1);
-    set_output(pin, SPI_CHIP_SELECT);
-    set_output(pin, !SPI_CHIP_SELECT);
+    dir_out(pin);
+    out(pin, !SPI_CHIP_SELECT);
+    //pause(1);
+    out(pin, SPI_CHIP_SELECT);
+    out(pin, !SPI_CHIP_SELECT);
 }
