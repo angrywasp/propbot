@@ -1,10 +1,27 @@
 {
     "configurations": [
         {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/Users/${env.USER}/propeller-gcc/include/**",
+                "/Users/${env.USER}/propeller-gcc/propeller-elf/include/**"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-arm64"
+        },
+        {
             "name": "Win32",
             "includePath": [
-                "c:/propeller-gcc/propeller-elf/include",
-                "c:/propeller-gcc/include/**"
+                "${workspaceFolder}/**",
+                "c:/msys64/home/${env.USERNAME}/propeller-gcc/include/**",
+                "c:/msys64/home/${env.USERNAME}/propeller-gcc/propeller-elf/include/**"
             ],
             "defines": [
                 "_DEBUG",
