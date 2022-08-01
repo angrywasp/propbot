@@ -20,6 +20,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
+                "C:/msys64/mingw64/lib",
                 "c:/msys64/home/${env.USERNAME}/propeller-gcc/include/**",
                 "c:/msys64/home/${env.USERNAME}/propeller-gcc/propeller-elf/include/**"
             ],

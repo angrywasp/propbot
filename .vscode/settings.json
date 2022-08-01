@@ -1,48 +1,22 @@
 {
     "3dviewer.wireframe": true,
     "files.associations": {
-        "simpletext.h": "c",
-        "simpletools.h": "c",
+        "*.h": "c",
         "*.dat": "hex",
-        "*.tcc": "cpp",
-        "propeller.h": "c",
-        "io.h": "c",
-        "cstdint": "cpp",
-        "spi.h": "c",
-        "exception": "cpp",
-        "functional": "cpp",
-        "future": "cpp",
-        "memory": "cpp",
-        "regex": "cpp",
-        "stdexcept": "cpp",
-        "system_error": "cpp",
-        "type_traits": "cpp",
-        "typeinfo": "cpp",
-        "xiosbase": "cpp",
-        "xlocmes": "cpp",
-        "*.rh": "cpp",
-        "refs.h": "c",
-        "limits": "c",
-        "random": "c",
-        "array": "c",
-        "vector": "c",
-        "xstring": "c",
-        "cstdio": "c",
-        "*.bak": "c"
+        "random": "c"
     },
     "terminal.integrated.env.windows": {
         "CHERE_INVOKING": "1" ,
         "MSYSTEM": "MINGW64"
     },
-    "terminal.external.windowsExec": "C:\\msys64\\mysys2.exe",
     "terminal.integrated.profiles.windows": {
         "MYSYS": {
-            "path": "C:\\msys64\\usr\\bin\\bash.exe",
+            "path": "C:\\msys64\\usr\\bin\\zsh.exe",
             "args": [
                 "--login",
                 "-i"
             ]
         }
     },
-    "terminal.integrated.defaultProfile.windows": "MYSYS",  // I am using default MYSYS(this line is optional)
+    "terminal.integrated.defaultProfile.windows": "MYSYS"
 }
