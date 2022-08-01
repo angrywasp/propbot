@@ -3,7 +3,9 @@
     "files.associations": {
         "*.h": "c",
         "*.dat": "hex",
-        "random": "c"
+        "random": "c",
+        "iosfwd": "c",
+        "functional": "c"
     },
     "terminal.integrated.env.windows": {
         "CHERE_INVOKING": "1" ,
