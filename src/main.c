@@ -1,4 +1,9 @@
-#include "simpletools.h"
+#ifdef DESKTOP
+    #include "./lib/simulator.h"
+#else
+    #include "simpletools.h"
+#endif
+
 #include "./lib/AD7812.h"
 #include "./lib/IO.h"
 #include "./lib/refs.h"

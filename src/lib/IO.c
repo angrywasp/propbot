@@ -1,9 +1,14 @@
-#include "simpletools.h"
+#ifdef DESKTOP
+    #include "./simulator.h"
+#else
+    #include "simpletools.h"
+#endif
+
 #include "./AD7812.h"
 #include "./IO.h"
 #include "./refs.h"
 
-io_binding_t* io_add_binding(uint16_t data, char* msg)
+io_binding_t* io_add_binding(unsigned short data, char* msg)
 {
     io_binding_t* b = (io_binding_t*)malloc(sizeof(io_binding_t));
 

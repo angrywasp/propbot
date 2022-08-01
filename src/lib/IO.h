@@ -12,7 +12,7 @@ typedef struct
     char* msg;
 } io_binding_t;
 
-io_binding_t* io_add_binding(uint16_t data, char* msg);
+io_binding_t* io_add_binding(unsigned short data, char* msg);
 
 void io_switch(volatile io_binding_t* b);
 void io_adc(volatile io_binding_t* b);

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+mode=cmm
+optimization=O0
+port=COM3
+
+function build()
+{
+    rm -rf $dir/build
+    mkdir $dir/build
+
+    libs=(
+        simulator
+        IO
+        AD7812
+        SPI
+    )
+
+    includeDirectories="-I . -L . "
+    obj=""
+
+    for i in "${libs[@]}"; do
+        echo "Building Library $i"
+        gcc -DDESKTOP -DDEBUG -ggdb $includeDirectories -lm -$optimization -Wall -fno-exceptions -c src/lib/$i.c -o build/$i.o
+        obj="$obj build/$i.o"
+    done
+
+    echo "Building Program $1"
+    gcc -DDESKTOP -DDEBUG -ggdb $includeDirectories -lm -$optimization -Wall -fno-exceptions $obj src/$1.c $includeLibs -o build/$1
+}
+
+$1 $2

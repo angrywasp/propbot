@@ -1,7 +1,11 @@
 #ifndef __refs_H
 #define __refs_H
 
-#include "simpletools.h"
+#ifdef DESKTOP
+    #include "./simulator.h"
+#else
+    #include "simpletools.h"
+#endif
 
 #define bool char
 #define true 1

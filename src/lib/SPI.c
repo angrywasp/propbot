@@ -1,4 +1,9 @@
-#include "simpletools.h"
+#ifdef DESKTOP
+    #include "./simulator.h"
+#else
+    #include "simpletools.h"
+#endif
+
 #include "./SPI.h"
 #include "./refs.h"
 
@@ -32,9 +37,9 @@ void spi_init(int mosi, int miso, int clk)
     out(clk, spi_IdleCLK);
 }
 
-uint16_t spi_transfer(uint16_t tx)
+unsigned short spi_transfer(unsigned short tx)
 {
-    uint16_t rx = 0;
+    unsigned short rx = 0;
 
     for (int i = 15; i >= 0; i--)
     {

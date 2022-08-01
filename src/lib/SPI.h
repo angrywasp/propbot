@@ -27,7 +27,7 @@ Propeller
 
 void spi_init(int mosi, int miso, int clk);
 
-uint16_t spi_transfer(uint16_t tx);
+unsigned short spi_transfer(unsigned short tx);
 
 void spi_select_chip(int pin);
 
