@@ -1,9 +1,3 @@
-#ifdef DESKTOP
-    #include "./simulator.h"
-#else
-    #include "simpletools.h"
-#endif
-
 #include "./AD7812.h"
 #include "./IO.h"
 #include "./refs.h"

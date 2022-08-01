@@ -11,9 +11,6 @@
 #define true 1
 #define false 0
 
-#define dira DIRA
-#define outa OUTA
-
 #define dir_out(pin) set_direction(pin, 1)
 #define dir_in(pin) set_direction(pin, 0)
 
