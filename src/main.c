@@ -19,6 +19,10 @@ void led();
 
 int main()
 {
+
+#ifdef DESKTOP
+    start_input_thread();
+#endif
     pause(100);
 
     for (int i = 4; i <= 19; i++)
