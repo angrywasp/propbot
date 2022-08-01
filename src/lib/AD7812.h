@@ -1,18 +1,6 @@
 #ifndef __ad7812_H
 #define __ad7812_H
 
-#ifdef DESKTOP
-typedef struct
-{
-    int pos;
-    int val;
-} adc_port_t;
-
-int get_adc_port(int port);
-void reset_simulated_transfer(int port);
-void increment_simulated_transfer(int port);
-#endif
-
 extern const int ad7812_A1;
 extern const int ad7812_A2;
 extern const int ad7812_A3;
