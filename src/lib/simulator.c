@@ -35,11 +35,11 @@ void set_output(int pin, int state)
         pins[pin]->direction = 1;
     }
 
-    /*if (pins[pin]->direction == 0)
+    if (pins[pin]->direction == 0)
     {
         printf("ERROR: attempt to toggle state of input pin %d\n", pin);
         exit(0);
-    }*/
+    }
 
     pins[pin]->state = state;
 
@@ -155,10 +155,10 @@ void adc_select_port(int tx)
     ports[selected_port]->pos = 10;
 }
 
-void adc_respond(int tx)
+void adc_respond()
 {
     int state = (ports[selected_port]->val >> --ports[selected_port]->pos) & 1;
-    set_output(3, state);
+    pins[3]->state = state;
 }
 
 void adc_increment_adc(int port)

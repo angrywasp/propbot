@@ -39,7 +39,7 @@ void start_input_thread();
 
 //adc
 void adc_select_port(int tx);
-void adc_respond(int tx);
+void adc_respond();
 void adc_increment_adc(int port);
 void adc_decrement_adc(int port);
 
