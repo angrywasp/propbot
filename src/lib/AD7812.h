@@ -11,9 +11,7 @@ extern const int ad7812_A7;
 extern const int ad7812_A8;
 
 void ad7812_init(int din, int dout, int sclk, int convst);
-
 int ad7812_read(int port);
-
 void ad7812_select(int pin);
 void ad7812_deselect(int pin);
 

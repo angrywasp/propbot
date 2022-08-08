@@ -39,7 +39,7 @@ static inline int _ad7812_transfer(int tx)
         hi(adc_clkPin);
         lo(adc_clkPin);
 #ifdef DESKTOP
-        adc_respond(tx);
+        adc_respond();
 #endif
         if (in(adc_misoPin) == 1)
             rx |= 1 << i;
