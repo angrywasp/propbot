@@ -14,18 +14,13 @@ const int ad7812_A6 = 0x6540;
 const int ad7812_A7 = 0x6640;
 const int ad7812_A8 = 0x6740;
 
-static int adc_mosiPin;
-static int adc_misoPin;
-static int adc_clkPin;
-static int adc_convstPin;
-
-static inline void _ad7812_toggle_convst()
+static inline void _ad7812_toggle_convst(volatile ad7812_context_t* cxt)
 {
-    lo(adc_convstPin);
-    hi(adc_convstPin);
+    lo(cxt->convst);
+    hi(cxt->convst);
 }
 
-static inline int _ad7812_transfer(int tx)
+static inline int _ad7812_transfer(volatile ad7812_context_t* cxt, int tx)
 {
     int rx = 0;
 
@@ -35,52 +30,44 @@ static inline int _ad7812_transfer(int tx)
 
     for (int i = 15; i >= 5; i--)
     {
-        out(adc_mosiPin, (tx >> i) & 1);
-        hi(adc_clkPin);
-        lo(adc_clkPin);
+        out(cxt->mosi, (tx >> i) & 1);
+        hi(cxt->clk);
+        lo(cxt->clk);
 #ifdef DESKTOP
         adc_respond();
 #endif
-        if (in(adc_misoPin) == 1)
+        if (in(cxt->miso) == 1)
             rx |= 1 << i;
     }
-    lo(adc_mosiPin);
+    lo(cxt->mosi);
     return rx;
 }
 
-void ad7812_init(int din, int dout, int sclk, int convst)
+ad7812_context_t* ad7812_init(int din, int dout, int sclk, int convst)
 {
-    adc_mosiPin = din;
-    adc_misoPin = dout;
-    adc_clkPin = sclk;
-    adc_convstPin = convst;
+    lo(din);
+    lo(sclk);
+    hi(convst);
 
-    dir_out(adc_mosiPin);
-    dir_in(adc_misoPin);
-    dir_out(adc_clkPin);
-    dir_out(adc_convstPin);
+    dir_out(din);
+    dir_in(dout);
+    dir_out(sclk);
+    dir_out(convst);
 
-    lo(adc_mosiPin);
-    lo(adc_clkPin);
-    hi(adc_convstPin);
+    ad7812_context_t* cxt = (ad7812_context_t*)malloc(sizeof(ad7812_context_t));
+    cxt->mosi = din;
+    cxt->miso = dout;
+    cxt->clk = sclk;
+    cxt->convst = convst;
+
+    return cxt;
 }
 
-int ad7812_read(int port)
+int ad7812_read(volatile ad7812_context_t* cxt, int port)
 {
-    _ad7812_toggle_convst();
-    _ad7812_transfer(port);
-    _ad7812_toggle_convst();
-    int val = _ad7812_transfer(0x4040);
+    _ad7812_toggle_convst(cxt);
+    _ad7812_transfer(cxt, port);
+    _ad7812_toggle_convst(cxt);
+    int val = _ad7812_transfer(cxt, 0x4040);
     return val >> 6;
-}
-
-void ad7812_select(int pin)
-{
-    dir_out(pin);
-    lo(pin);
-}
-
-void ad7812_deselect(int pin)
-{
-    hi(pin);
 }

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -16,6 +16,9 @@ function build()
         IO
         AD7812
         SPI
+        HD44780
+        NRF24L01
+        serial_buffer
     )
 
     includeDirectories="-I . -L . "

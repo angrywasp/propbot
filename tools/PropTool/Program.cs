@@ -135,6 +135,7 @@ namespace PropToolProgram
             if (!port.IsOpen)
                 return;
 
+            Console.WriteLine($"Changing baud rate to {baud}");
             port.DiscardInBuffer();
             port.DiscardOutBuffer();
             port.BaudRate = baud;

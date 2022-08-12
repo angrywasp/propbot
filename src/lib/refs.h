@@ -8,6 +8,8 @@
 #endif
 
 #define bool char
+#define sbyte char
+#define byte unsigned char
 #define true 1
 #define false 0
 

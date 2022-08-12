@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash -e
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 mode=cmm
 optimization=O3
 port=COM6
-board="-D loader=rom -D clkfreq=24000000 -D clkmode=xtal1+pll4x -D baud-rate=115200 -D loader-baud-rate=115200"
+board="-D loader=rom -D clkfreq=80000000 -D clkmode=xtal1+pll16x -D baud-rate=115200 -D loader-baud-rate=115200"
 
 gcc=~/propeller-gcc
 
@@ -27,6 +27,8 @@ function build()
         AD7812
         SPI
         HD44780
+        NRF24L01
+        serial_buffer
     )
 
     includeDirectories="-I . -L ."
@@ -52,7 +54,7 @@ function build()
 
 function install()
 {
-    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --ram build/$1.binary
+    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --ram build/$1.binary --listen 115200
 }
 
 $1 $2

@@ -1,4 +1,3 @@
-
 #ifndef __hd44780_H
 #define __hd44780_H
 /*
@@ -26,7 +25,7 @@ INSTRUCTION SET
    │ SET CGRAM ADDRESS    │ 0 │ 0 │     │ 0 │ 1 │      CGRAM ADDRESS    │     │ Sets the CGRAM address. CGRAM data is sent and received after       │
    │                      │   │   │     │   │   │   │   │   │   │   │   │     │ this setting.                                                       │
    │                      │   │   │     │   │   │   │   │   │   │   │   │     │                                                                     │
-   │ SET DDRAM ADDRESS    │ 0 │ 0 │     │ 1 │       DDRAM ADDRESS       │     │ Sets the DDRAM address. DDRAM data is sent and received after       │                                                             
+   │ SET DDRAM ADDRESS    │ 0 │ 0 │     │ 1 │       DDRAM ADDRESS       │     │ Sets the DDRAM address. DDRAM data is sent and received after       │
    │                      │   │   │     │   │   │   │   │   │   │   │   │     │ this setting.                                                       │
    │                      │   │   │     │   │   │   │   │   │   │   │   │     │                                                                     │
    │ READ BUSY FLAG AND   │ 0 │ 1 │     │ BF│    CGRAM/DDRAM ADDRESS    │     │ Reads Busy-flag (BF) indicating internal operation is being         │
@@ -42,11 +41,11 @@ INSTRUCTION SET
    Remarks :
             * = 0 OR 1
         DDRAM = Display Data Ram
-                Corresponds to cursor position                  
-        CGRAM = Character Generator Ram        
+                Corresponds to cursor position
+        CGRAM = Character Generator Ram
 
    ┌──────────┬──────────────────────────────────────────────────────────────────────┐
-   │ BIT NAME │                          SETTING STATUS                              │                                                              
+   │ BIT NAME │                          SETTING STATUS                              │
    ├──────────┼─────────────────────────────────┬────────────────────────────────────┤
    │  I/D     │ 0 = Decrement cursor position   │ 1 = Increment cursor position      │
    │  S       │ 0 = No display shift            │ 1 = Display shift                  │
@@ -62,7 +61,7 @@ INSTRUCTION SET
    └──────────┴─────────────────────────────────┴────────────────────────────────────┘
 
    DDRAM ADDRESS USAGE FOR A 1-LINE DISPLAY
-   
+
     00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39   <- CHARACTER POSITION
    ┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐
    │00│01│02│03│04│05│06│07│08│09│0A│0B│0C│0D│0E│0F│10│11│12│13│14│15│16│17│18│19│1A│1B│1C│1D│1E│1F│20│21│22│23│24│25│26│27│  <- ROW0 DDRAM ADDRESS
@@ -87,13 +86,30 @@ INSTRUCTION SET
    └──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┘
 */
 
-void hd44780_init(int rs, int rw, int e, int d0, int d1, int d2, int d3, int d4, int d5, int d6, int d7);
-void hd44780_clear();
-void hd44780_instruct(char data);
-void hd44780_data(char data);
-void hd44780_move(int x, int y);
-void hd44780_str(char* string);
-void hd44780_dec(int value);
-void hd44780_hex(int value);
+#include "./refs.h"
+
+typedef struct
+{
+    volatile int rs;
+    volatile int rw;
+    volatile int e;
+    volatile int d0;
+    volatile int d1;
+    volatile int d2;
+    volatile int d3;
+    volatile int d4;
+    volatile int d5;
+    volatile int d6;
+    volatile int d7;
+} hd44780_context_t;
+
+hd44780_context_t* hd44780_init(int rs, int rw, int e, int d0, int d1, int d2, int d3, int d4, int d5, int d6, int d7);
+void hd44780_clear(volatile hd44780_context_t* cxt);
+void hd44780_instruct(volatile hd44780_context_t* cxt, char data);
+void hd44780_data(volatile hd44780_context_t* cxt, char data);
+void hd44780_move(volatile hd44780_context_t* cxt, int x, int y);
+void hd44780_str(volatile hd44780_context_t* cxt, char *string);
+void hd44780_dec(volatile hd44780_context_t* cxt, int value);
+void hd44780_hex(volatile hd44780_context_t* cxt, int value);
 
 #endif

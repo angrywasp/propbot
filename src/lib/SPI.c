@@ -3,60 +3,67 @@
 
 const int SPI_CHIP_SELECT = 0;
 
-static int spi_IdleCLK;
-static int spi_ActiveCLK;
-static int spi_PhaseCLK;
-
-static int spi_mosiPin;
-static int spi_misoPin;
-static int spi_clkPin;
-
-void spi_init(int mosi, int miso, int clk)
+static void _shift(volatile spi_context_t* cxt, byte tx, int index, byte *rx)
 {
-    int iMode = 1;
+    if (cxt->phaseClk == 0)
+        out(cxt->mosi, tx >> index);
 
-    spi_IdleCLK = iMode >> 1;
-    spi_ActiveCLK = !spi_IdleCLK;
-    spi_PhaseCLK = iMode & 0x01;
+    // pause(1);
+    out(cxt->clk, cxt->activeClk);
 
-    spi_mosiPin = mosi;
-    spi_misoPin = miso;
-    spi_clkPin = clk;
+    if (cxt->phaseClk == 0)
+    {
+        if (get_state(cxt->miso) == 1)
+            (*rx) |= 1 << index;
+    }
+    else
+        out(cxt->mosi, tx >> index);
+
+    // pause(1);
+    out(cxt->clk, cxt->idleClk);
+
+    if (cxt->phaseClk == 1)
+        if (in(cxt->miso) == 1)
+            (*rx) |= 1 << index;
+}
+
+spi_context_t *spi_init(int mosi, int miso, int clk, byte msbLsb, byte mode)
+{
+    spi_context_t *cxt = (spi_context_t *)malloc(sizeof(spi_context_t));
+    cxt->msbLsb = mode;
+    cxt->mode = mode;
+
+    cxt->idleClk = mode >> 1;
+    cxt->activeClk = !cxt->idleClk;
+    cxt->phaseClk = mode & 0x01;
+
+    cxt->mosi = mosi;
+    cxt->miso = miso;
+    cxt->clk = clk;
 
     dir_out(mosi);
     dir_in(miso);
     dir_out(clk);
 
     lo(mosi);
-    out(clk, spi_IdleCLK);
+    out(clk, cxt->idleClk);
+
+    return cxt;
 }
 
-unsigned short spi_transfer(unsigned short tx)
+byte spi_transfer(volatile spi_context_t* cxt, byte tx)
 {
-    unsigned short rx = 0;
+    byte rx = 0;
 
-    for (int i = 15; i >= 0; i--)
+    if (cxt->msbLsb)
     {
-        if (spi_PhaseCLK == 0)
-            out(spi_mosiPin, tx >> i);
-
-        //pause(1);
-        out(spi_clkPin, spi_ActiveCLK);
-
-        if (spi_PhaseCLK == 0)
-        {
-            if (get_state(spi_misoPin) == 1)
-                rx |= 1 << i;
-        }
-        else
-            out(spi_mosiPin, tx >> i);
-
-        //pause(1);
-        out(spi_clkPin, spi_IdleCLK);
-
-        if (spi_PhaseCLK == 1)
-            if (in(spi_misoPin) == 1)
-                rx |= 1 << i;
+        for (int i = 7; i >= 0; i--)
+            _shift(cxt, tx, i, &rx);
+    }
+    else
+    {
+        for (int i = 0; i < 8; i++)
+            _shift(cxt, tx, i, &rx);
     }
 
     return rx;
@@ -66,20 +73,20 @@ void spi_select_chip(int pin)
 {
     dir_out(pin);
     out(pin, SPI_CHIP_SELECT);
-    //pause(1);
+    // pause(1);
 }
 
 void spi_deselect_chip(int pin)
 {
     out(pin, !SPI_CHIP_SELECT);
-    //pause(1);
+    // pause(1);
 }
 
 void spi_wake_up(int pin)
 {
     dir_out(pin);
     out(pin, !SPI_CHIP_SELECT);
-    //pause(1);
+    // pause(1);
     out(pin, SPI_CHIP_SELECT);
     out(pin, !SPI_CHIP_SELECT);
 }

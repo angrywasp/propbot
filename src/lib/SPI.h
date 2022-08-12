@@ -25,14 +25,27 @@ Propeller
 +---------+
 */
 
-void spi_init(int mosi, int miso, int clk);
+#include "./refs.h"
 
-unsigned short spi_transfer(unsigned short tx);
+typedef struct
+{
+    byte msbLsb;
+    byte mode;
+    byte idleClk;
+    byte activeClk;
+    byte phaseClk;
+
+    int mosi;
+    int miso;
+    int clk;
+} spi_context_t;
+
+spi_context_t* spi_init(int mosi, int miso, int clk, byte msbLsb, byte mode);
+
+byte spi_transfer(volatile spi_context_t* cxt, byte tx);
 
 void spi_select_chip(int pin);
-
 void spi_deselect_chip(int pin);
-
 void spi_wake_up(int pin);
 
 #endif

@@ -8,7 +8,8 @@
         "functional": "c",
         "lcdtestc": "cpp",
         "xtr1common": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "cstddef": "c"
     },
     "terminal.integrated.env.windows": {
         "CHERE_INVOKING": "1" ,

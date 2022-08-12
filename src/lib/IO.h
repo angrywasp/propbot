@@ -5,16 +5,29 @@
 
 typedef struct
 {
-    volatile int data;
     volatile int lastVal;
     volatile bool changed;
     volatile bool newValueReady;
     char* msg;
-} io_binding_t;
+} io_binding_value_data_t;
 
-io_binding_t* io_add_binding(unsigned short data, char* msg);
+typedef struct
+{
+    volatile int pin;
+    volatile io_binding_value_data_t* value;
+} io_switch_binding_t;
 
-void io_switch(volatile io_binding_t* b);
-void io_adc(volatile io_binding_t* b);
+typedef struct
+{
+    volatile ad7812_context_t* adc;
+    volatile int port;
+    volatile io_binding_value_data_t* value;
+} io_adc_binding_t;
+
+io_switch_binding_t* io_add_switch_binding(int pin, char* msg);
+io_adc_binding_t* io_add_adc_binding(ad7812_context_t* adc_context, unsigned short port, char* msg);
+
+void io_switch(volatile io_switch_binding_t* b);
+void io_adc(volatile io_adc_binding_t* b);
 
 #endif
