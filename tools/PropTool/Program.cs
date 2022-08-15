@@ -87,6 +87,7 @@ namespace PropToolProgram
                     int baud = int.Parse(c["listen"].Value);
 
                     p.ChangeBaudRate(baud);
+                    Thread.Sleep(500);
                     p.Listen();
 
                     while (true)
@@ -143,6 +144,8 @@ namespace PropToolProgram
 
         public void Listen()
         {
+            port.DiscardInBuffer();
+            port.DiscardOutBuffer();
             port.DataReceived += (s, e) =>
             {
                 Console.Write(port.ReadExisting());

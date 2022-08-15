@@ -2,8 +2,8 @@
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-mode=cmm
-optimization=O3
+mode=lmm
+optimization=O1
 port=COM6
 board="-D loader=rom -D clkfreq=80000000 -D clkmode=xtal1+pll16x -D baud-rate=115200 -D loader-baud-rate=115200"
 
@@ -25,8 +25,8 @@ function build()
     libs=(
         IO
         AD7812
-        SPI
         HD44780
+        SPI
         NRF24L01
         serial_buffer
     )

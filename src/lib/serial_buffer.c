@@ -25,7 +25,7 @@ char* serial_buffer_pop()
     if (serial_buffer_is_empty())
         return  0;
 
-    char* value = buffer[read_index];
+    byte* value = buffer[read_index];
     length--;
     read_index++;
 
