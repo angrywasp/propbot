@@ -105,7 +105,6 @@ is not at the head of the FIFO and an ack packet is transmitted, then the ack pa
         $1D   FEATURE         %00000000  have to do the ACTIVE cmd first        Enable or disable the dynamic payload, ack payload, and selective ack features
 */
 
-#include "./SPI.h"
 #include "./refs.h"
 
 extern const byte nrf_CONFIG;
@@ -137,14 +136,15 @@ extern const byte nrf_FEATURE;
 
 typedef struct
 {
-    volatile spi_context_t* spi;
+    volatile int mosi;
+    volatile int miso;
+    volatile int clk;
     volatile int cs;
     volatile int ce;
 } nrf_context_t;
 
 nrf_context_t* nrf_init(int mosi, int miso, int clk, int cs, int ce);
 void nrf_wake_up(volatile nrf_context_t* cxt);
-void nrf_enable(volatile nrf_context_t* cxt, bool on);
 byte nrf_set_power_radio(volatile nrf_context_t* cxt, bool on);
 byte nrf_set_primary_mode(volatile nrf_context_t* cxt, byte mode);
 byte nrf_enable_rx_pipes(volatile nrf_context_t* cxt, byte pipe);
@@ -159,13 +159,21 @@ byte nrf_flush_rx(volatile nrf_context_t* cxt);
 byte nrf_flush_tx(volatile nrf_context_t* cxt);
 byte nrf_read_and_clear_interrupts(volatile nrf_context_t* cxt);
 
+byte nrf_read_status(volatile nrf_context_t* cxt);
+byte nrf_read_fifo_status(volatile nrf_context_t* cxt);
+
+bool nrf_status_tx_fifo_full(volatile nrf_context_t* cxt);
+bool nrf_status_tx_data_sent(volatile nrf_context_t* cxt);
+bool nrf_status_rx_data_ready(volatile nrf_context_t* cxt);
+
+bool nrf_fifo_status_rx_empty(volatile nrf_context_t* cxt);
+bool nrf_fifo_status_rx_full(volatile nrf_context_t* cxt);
+bool nrf_fifo_status_tx_empty(volatile nrf_context_t* cxt);
+bool nrf_fifo_status_tx_full(volatile nrf_context_t* cxt);
+
 void nrf_transmit(volatile nrf_context_t* cxt, byte* data, byte count);
 void nrf_receive(volatile nrf_context_t* cxt, byte* data, byte count);
 
-bool nrf_is_payload_rx(volatile nrf_context_t* cxt);
-bool nrf_is_payload_pipe(volatile nrf_context_t* cxt);
-bool nrf_is_data_sent(volatile nrf_context_t* cxt);
-bool nrf_is_max_retries(volatile nrf_context_t* cxt);
-bool nrf_is_tx_buffer_full(volatile nrf_context_t* cxt);
+byte nrf_read_payload_width(volatile nrf_context_t* cxt);
 
 #endif

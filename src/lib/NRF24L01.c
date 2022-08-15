@@ -1,11 +1,5 @@
-#ifdef DESKTOP
-#include "./simulator.h"
-#endif
-
-#include "./SPI.h"
 #include "./NRF24L01.h"
 #include "./refs.h"
-#include "serial_buffer.h"
 
 const byte nrf_CONFIG = 0x00;
 const byte nrf_EN_AA = 0x01;
@@ -34,79 +28,110 @@ const byte nrf_FIFO_STATUS = 0x17;
 const byte nrf_DYNPD = 0x1c;
 const byte nrf_FEATURE = 0x1d;
 
+static byte _spi_transfer(volatile nrf_context_t* cxt, byte value)
+{
+    byte rx = value;
+
+    for (int i = 0; i < 8; i++)
+    {
+        if (rx & 0x80)
+            hi(cxt->mosi);
+        else
+            lo(cxt->mosi);
+
+        rx <<= 1;
+
+        usleep(1);
+        hi(cxt->clk);
+        usleep(1);
+        rx |= in(cxt->miso);
+        lo(cxt->clk);
+    }
+
+    usleep(100);
+
+    return rx;
+}
+
+
 static byte _nrf_R_REGISTER_byte(volatile nrf_context_t* cxt, byte reg)
 {
-    spi_select_chip(cxt->cs);
+    lo(cxt->cs);
 
-    spi_transfer(cxt->spi, reg);
-    byte result = spi_transfer(cxt->spi, 0xff);
+    _spi_transfer(cxt, 0b00000000 | reg);
+    byte result = _spi_transfer(cxt, 0xff);
 
-    spi_deselect_chip(cxt->cs);
+    hi(cxt->cs);
     return result;
 }
 
 static void _nrf_R_REGISTER_data(volatile nrf_context_t* cxt, byte reg, byte* data, byte count)
 {
-    spi_select_chip(cxt->cs);
+    lo(cxt->cs);
 
-    spi_transfer(cxt->spi, reg);
+    _spi_transfer(cxt, reg);
     for (int i = 0; i < count; i++)
-        data[i] = spi_transfer(cxt->spi, 0xff);
+        data[i] = _spi_transfer(cxt, 0xff);
     
-    spi_deselect_chip(cxt->cs);
+    hi(cxt->cs);
 }
 
 static byte _nrf_W_REGISTER_byte(volatile nrf_context_t* cxt, byte reg, byte value)
 {
-    spi_select_chip(cxt->cs);
+    lo(cxt->cs);
 
-    spi_transfer(cxt->spi, 0b00100000 | reg);
-    byte result = spi_transfer(cxt->spi, value);
+    _spi_transfer(cxt, 0b00100000 | reg);
+    byte result = _spi_transfer(cxt, value);
 
-    spi_deselect_chip(cxt->cs);
+    hi(cxt->cs);
     return result;
 }
 
 static void _nrf_W_REGISTER_data(volatile nrf_context_t* cxt, byte reg, byte* data, byte count)
 {
-    spi_select_chip(cxt->cs);
-    spi_transfer(cxt->spi, 0b00100000 | reg);
+    lo(cxt->cs);
+    _spi_transfer(cxt, 0b00100000 | reg);
     
     for (int i = 0; i < count; i++)
-        spi_transfer(cxt->spi, data[i]);
+        _spi_transfer(cxt, data[i]);
 
-    spi_deselect_chip(cxt->cs);
+    hi(cxt->cs);
 }
 
 nrf_context_t* nrf_init(int mosi, int miso, int clk, int cs, int ce)
 {
     nrf_context_t* cxt = (nrf_context_t*)malloc(sizeof(nrf_context_t));
-    spi_context_t* spi_context = spi_init(mosi, miso, clk, 1, 0);
 
+    lo(mosi);
     lo(ce);
+    lo(clk);
+
+    dir_out(mosi);
+    dir_in(miso);
+    dir_out(clk);
     dir_out(ce);
 
-    cxt->spi = spi_context;
+    cxt->mosi = mosi;
+    cxt->miso = miso;
+    cxt->clk = clk;
     cxt->cs = cs;
     cxt->ce = ce;
 
     pause(1);
-
-    nrf_wake_up(cxt);
+    
     nrf_set_power_radio(cxt, 1);
-    nrf_set_primary_mode(cxt, 1);
+    nrf_wake_up(cxt);
+    
+    pause(1);
 
     return cxt;
 }
 
 void nrf_wake_up(volatile nrf_context_t* cxt)
 {
-    spi_wake_up(cxt->cs);
-}
-
-void nrf_enable(volatile nrf_context_t* cxt, bool on)
-{
-    out(cxt->ce, on);
+    hi(cxt->cs);
+    lo(cxt->cs);
+    hi(cxt->cs);
 }
 
 byte nrf_set_power_radio(volatile nrf_context_t* cxt, bool on)
@@ -182,6 +207,7 @@ byte nrf_set_transmitter_power(volatile nrf_context_t* cxt, sbyte dB)
 byte nrf_set_data_rate(volatile nrf_context_t* cxt, byte rate)
 {
     byte value = _nrf_R_REGISTER_byte(cxt, nrf_RF_SETUP) & !0b00001000;
+
     _nrf_W_REGISTER_byte(cxt, nrf_RF_SETUP, value |= (rate & 1) << 3);
     return _nrf_R_REGISTER_byte(cxt, nrf_RF_SETUP);
 }
@@ -202,7 +228,7 @@ happens when attempting to write more address bytes in this case
 byte nrf_write_rx_pipe_address(volatile nrf_context_t* cxt, byte pipe, byte* address)
 {
     byte addr_width = _nrf_R_REGISTER_byte(cxt, nrf_SETUP_AW);
-    //printf("nrf_write_rx_pipe_address: %d\n", addr_width);
+
     _nrf_W_REGISTER_data(cxt, nrf_RX_ADDR_P0 + pipe, address, addr_width);
     return addr_width;
 }
@@ -215,27 +241,28 @@ when using auto-ACK, this address should be the same as Pipe0 rx address
 byte nrf_write_tx_pipe_address(volatile nrf_context_t* cxt, byte* address)
 {
     byte addr_width = _nrf_R_REGISTER_byte(cxt, nrf_SETUP_AW);
-    //printf("nrf_write_tx_pipe_address: %d\n", addr_width);
+
     _nrf_W_REGISTER_data(cxt, nrf_TX_ADDR, address, addr_width);
     return addr_width;
 }
 
 byte nrf_flush_rx(volatile nrf_context_t* cxt)
 {
-    spi_select_chip(cxt->cs);
-    byte value = spi_transfer(cxt->spi, 0b11100010);
-    spi_deselect_chip(cxt->cs);
+    lo(cxt->cs);
+    byte value = _spi_transfer(cxt, 0b11100010);
+    hi(cxt->cs);
     return value;
 }
 
 byte nrf_flush_tx(volatile nrf_context_t* cxt)
 {
-    spi_select_chip(cxt->cs);
-    byte value = spi_transfer(cxt->spi, 0b11100001);
-    spi_deselect_chip(cxt->cs);
+    lo(cxt->cs);
+    byte value = _spi_transfer(cxt, 0b11100001);
+    hi(cxt->cs);
     return value;
 }
 
+//writing back the same value clears the interrupt bits
 byte nrf_read_and_clear_interrupts(volatile nrf_context_t* cxt)
 {
     byte value = _nrf_R_REGISTER_byte(cxt, nrf_STATUS);
@@ -245,52 +272,82 @@ byte nrf_read_and_clear_interrupts(volatile nrf_context_t* cxt)
 
 void nrf_transmit(volatile nrf_context_t* cxt, byte* data, byte count)
 {
-    spi_select_chip(cxt->cs);
+    nrf_flush_tx(cxt);
+    nrf_read_and_clear_interrupts(cxt);
 
-    spi_transfer(cxt->spi, 0b10100000);
+    lo(cxt->cs);
+
+    _spi_transfer(cxt, 0b10100000);
     for (int i = 0; i < count; i++)
-        spi_transfer(cxt->spi, data[i]);
-    
-    spi_deselect_chip(cxt->cs);
+        _spi_transfer(cxt, data[i]);
+    8
+    hi(cxt->cs);
+
+    hi(cxt->ce);
+    usleep(50);
+    lo(cxt->ce);
+    usleep(50);
 }
 
 void nrf_receive(volatile nrf_context_t* cxt, byte* data, byte count)
 {
-    spi_select_chip(cxt->cs);
+    lo(cxt->cs);
 
-    spi_transfer(cxt->spi, 0b01100001);
+    _spi_transfer(cxt, 0b01100001);
     for (int i = 0; i < count; i++)
-        data[i] = spi_transfer(cxt->spi, 0xff);
+        data[i] = _spi_transfer(cxt, 0xff);
     
-    spi_deselect_chip(cxt->cs);
+    hi(cxt->cs);
+
+    nrf_read_and_clear_interrupts(cxt);
 }
 
-bool nrf_is_payload_rx(volatile nrf_context_t* cxt)
+byte nrf_read_status(volatile nrf_context_t* cxt)
 {
-    byte value = _nrf_R_REGISTER_byte(cxt, nrf_STATUS & 0b01000000) >> 6;
-    return value;
+    return _nrf_R_REGISTER_byte(cxt, nrf_STATUS);
 }
 
-bool nrf_is_payload_pipe(volatile nrf_context_t* cxt)
+byte nrf_read_fifo_status(volatile nrf_context_t* cxt)
 {
-    byte value = _nrf_R_REGISTER_byte(cxt, nrf_STATUS & 0b00001110) >> 1;
-    return value;
+    return _nrf_R_REGISTER_byte(cxt, nrf_FIFO_STATUS);
 }
 
-bool nrf_is_data_sent(volatile nrf_context_t* cxt)
+bool nrf_status_tx_fifo_full(volatile nrf_context_t* cxt)
 {
-    byte value = _nrf_R_REGISTER_byte(cxt, nrf_STATUS & 0b00100000) >> 5;
-    return value;
+    return (_nrf_R_REGISTER_byte(cxt, nrf_STATUS) >> 0) & 0x01;
 }
 
-bool nrf_is_max_retries(volatile nrf_context_t* cxt)
+bool nrf_status_tx_data_sent(volatile nrf_context_t* cxt)
 {
-    byte value = _nrf_R_REGISTER_byte(cxt, nrf_STATUS & 0b00010000) >> 4;
-    return value;
+    return (_nrf_R_REGISTER_byte(cxt, nrf_STATUS) >> 5) & 0x01;
 }
 
-bool nrf_is_tx_buffer_full(volatile nrf_context_t* cxt)
+bool nrf_status_rx_data_ready(volatile nrf_context_t* cxt)
 {
-    byte value = _nrf_R_REGISTER_byte(cxt, nrf_STATUS & 0b00000001);
-    return value;
+    return (_nrf_R_REGISTER_byte(cxt, nrf_STATUS) >> 6) & 0x01;
+}
+
+bool nrf_fifo_status_rx_empty(volatile nrf_context_t* cxt)
+{
+    return (_nrf_R_REGISTER_byte(cxt, nrf_FIFO_STATUS) >> 0) & 0x01;
+}
+
+bool nrf_fifo_status_rx_full(volatile nrf_context_t* cxt)
+{
+    return (_nrf_R_REGISTER_byte(cxt, nrf_FIFO_STATUS) >> 1) & 0x01;
+}
+
+bool nrf_fifo_status_tx_empty(volatile nrf_context_t* cxt)
+{
+    return (_nrf_R_REGISTER_byte(cxt, nrf_FIFO_STATUS) >> 4) & 0x01;
+}
+
+bool nrf_fifo_status_tx_full(volatile nrf_context_t* cxt)
+{
+    return (_nrf_R_REGISTER_byte(cxt, nrf_FIFO_STATUS) >> 5) & 0x01;
+}
+
+byte nrf_read_payload_width(volatile nrf_context_t* cxt)
+{
+    return _nrf_R_REGISTER_byte(cxt, 0b01100000);
 }
