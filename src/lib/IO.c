@@ -2,6 +2,8 @@
 #include "./IO.h"
 #include "./refs.h"
 
+#define JOYSTICK_DEADZONE 4
+
 io_switch_binding_t* io_add_switch_binding(int pin, char* msg)
 {
     io_switch_binding_t* b = (io_switch_binding_t*)malloc(sizeof(io_switch_binding_t));
@@ -72,6 +74,37 @@ void io_adc(volatile io_adc_binding_t* b)
     qsort(values, 5, sizeof(int), compare);
 
     val = values[2];
+
+    if (val == b->value->lastVal)
+    {
+        b->value->changed = false;
+        return;
+    }
+
+    b->value->lastVal = val;
+    b->value->changed = true;
+    b->value->newValueReady = true;
+}
+
+void io_joystick(volatile io_adc_binding_t* b)
+{
+    if (b->value->newValueReady)
+        return;
+
+    int val = 0;
+    int values[5];
+    for (int i = 0; i < 5; i++)
+    {
+        int v = ad7812_read(b->adc, b->port);
+        values[i] = v >> 2;
+    }
+
+    qsort(values, 5, sizeof(int), compare);
+
+    val = values[2] - 128;
+
+    if (val > -JOYSTICK_DEADZONE && val < JOYSTICK_DEADZONE)
+        val = 0;
 
     if (val == b->value->lastVal)
     {
