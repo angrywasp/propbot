@@ -2,8 +2,8 @@
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-mode=lmm
-optimization=O1
+mode=cmm
+optimization=O2
 port=COM6
 board="-D loader=rom -D clkfreq=80000000 -D clkmode=xtal1+pll16x -D baud-rate=115200 -D loader-baud-rate=115200"
 
@@ -15,6 +15,7 @@ function build()
 {
     rm -rf $dir/build
     mkdir $dir/build
+    mkdir $dir/build/fonts
 
     includes=(
         $gcc/include/Utility/libsimpletools
@@ -26,9 +27,12 @@ function build()
         IO
         AD7812
         HD44780
-        SPI
         NRF24L01
+        SSD1306
         serial_buffer
+        #fonts/dseg14_32
+        #fonts/orbitron_15
+        fonts/dejavu_sans_mono_12
     )
 
     includeDirectories="-I . -L ."
@@ -54,7 +58,7 @@ function build()
 
 function install()
 {
-    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --ram build/$1.binary --listen 115200
+    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --eeprom build/$1.binary --listen 115200
 }
 
 $1 $2

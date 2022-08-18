@@ -280,7 +280,7 @@ void nrf_transmit(volatile nrf_context_t* cxt, byte* data, byte count)
     _spi_transfer(cxt, 0b10100000);
     for (int i = 0; i < count; i++)
         _spi_transfer(cxt, data[i]);
-    8
+    
     hi(cxt->cs);
 
     hi(cxt->ce);

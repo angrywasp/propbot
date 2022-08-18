@@ -37,7 +37,6 @@ volatile io_switch_binding_t* switch_bindings[20] = {0};
 
 void adc();
 void io();
-void led();
 
 int main()
 {
@@ -50,10 +49,10 @@ int main()
     for (int i = 4; i <= 23; i++)
         dir_in(i);
 
-    ad7812_context_t* adc = ad7812_init(2, 3, 1, 0);
+    ad7812_context_t* a = ad7812_init(2, 3, 1, 0);
 
-    adc_binding7 = io_add_adc_binding(adc, ad7812_A7, "LEFT_DDI_BRT_CTL %d\n");
-    adc_binding8 = io_add_adc_binding(adc, ad7812_A8, "LEFT_DDI_CONT_CTL %d\n");
+    adc_binding7 = io_add_adc_binding(a, ad7812_A1, "LEFT_DDI_BRT_CTL %d\n");
+    adc_binding8 = io_add_adc_binding(a, ad7812_A2, "LEFT_DDI_CONT_CTL %d\n");
 
     btn_binding1 = io_add_switch_binding(4, "LEFT_DDI_PB_01 %d\n");
     btn_binding2 = io_add_switch_binding(5, "LEFT_DDI_PB_02 %d\n");

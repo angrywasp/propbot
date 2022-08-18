@@ -10,6 +10,8 @@
 #define bool char
 #define sbyte char
 #define byte unsigned char
+#define ushort unsigned short
+#define uint unsigned int
 #define true 1
 #define false 0
 
@@ -21,5 +23,7 @@
 
 #define hi(pin) high(pin)
 #define lo(pin) low(pin)
+
+#define max(a,b) (((a) > (b)) ? (a) : (b))
 
 #endif
