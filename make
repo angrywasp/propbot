@@ -4,8 +4,8 @@ dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 mode=cmm
 optimization=O2
-port=COM6
-board="-D loader=rom -D clkfreq=80000000 -D clkmode=xtal1+pll16x -D baud-rate=115200 -D loader-baud-rate=115200"
+port=COM8
+board="-D loader=rom -D clkfreq=96000000 -D clkmode=xtal1+pll16x -D baud-rate=115200 -D loader-baud-rate=115200"
 
 gcc=~/propeller-gcc
 
@@ -30,6 +30,7 @@ function build()
         NRF24L01
         SSD1306
         serial_buffer
+        circular_buffer
         #fonts/dseg14_32
         #fonts/orbitron_15
         fonts/dejavu_sans_mono_12
@@ -58,7 +59,7 @@ function build()
 
 function install()
 {
-    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --eeprom build/$1.binary --listen 115200
+    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --eeprom build/$1.binary # --listen 115200
 }
 
 $1 $2

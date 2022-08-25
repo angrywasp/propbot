@@ -1,0 +1,1498 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Propeller-rescue:24LC512-Propeller-rescue U2
+U 1 1 57FAC293
+P 3650 2400
+F 0 "U2" H 3650 2675 60  0000 C CNN
+F 1 "24LC512" H 3650 2125 60  0000 C CNN
+F 2 "Angrywasp:24LC512-W" H 3650 2100 60  0001 C CNN
+F 3 "" H 3650 2100 60  0001 C CNN
+	1    3650 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:74LVC126A-Propeller-rescue U4
+U 1 1 57FAC5BC
+P 6900 3750
+F 0 "U4" H 6900 4150 60  0000 C CNN
+F 1 "74LVC126A" H 6900 3350 60  0000 C CNN
+F 2 "Angrywasp:74LVC126" H 6675 3575 60  0001 C CNN
+F 3 "" H 6675 3575 60  0001 C CNN
+	1    6900 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:AD7812-Propeller-rescue U3
+U 1 1 57FAC655
+P 6800 5450
+F 0 "U3" H 6800 4905 60  0000 C CNN
+F 1 "AD7812" H 6790 6005 60  0000 C CNN
+F 2 "Angrywasp:AD7812" H 6800 5425 60  0001 C CNN
+F 3 "" H 6800 5425 60  0001 C CNN
+	1    6800 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR01
+U 1 1 57FAC96A
+P 7500 3275
+F 0 "#PWR01" H 7500 3125 50  0001 C CNN
+F 1 "+3.3V" H 7500 3415 50  0000 C CNN
+F 2 "" H 7500 3275 50  0000 C CNN
+F 3 "" H 7500 3275 50  0000 C CNN
+	1    7500 3275
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 57FACB00
+P 6350 4150
+F 0 "#PWR02" H 6350 3900 50  0001 C CNN
+F 1 "GND" H 6350 4000 50  0000 C CNN
+F 2 "" H 6350 4150 50  0000 C CNN
+F 3 "" H 6350 4150 50  0000 C CNN
+	1    6350 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR03
+U 1 1 57FAD453
+P 7550 6050
+F 0 "#PWR03" H 7550 5800 50  0001 C CNN
+F 1 "GND" H 7550 5900 50  0000 C CNN
+F 2 "" H 7550 6050 50  0000 C CNN
+F 3 "" H 7550 6050 50  0000 C CNN
+	1    7550 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C7
+U 1 1 57FAD6FD
+P 4900 5250
+F 0 "C7" H 4925 5350 50  0000 L CNN
+F 1 "10nF" H 4925 5150 50  0000 L CNN
+F 2 "Angrywasp:0805_HS" H 4938 5100 50  0001 C CNN
+F 3 "" H 4900 5250 50  0000 C CNN
+	1    4900 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 57FAD95E
+P 4900 5475
+F 0 "#PWR04" H 4900 5225 50  0001 C CNN
+F 1 "GND" H 4900 5325 50  0000 C CNN
+F 2 "" H 4900 5475 50  0000 C CNN
+F 3 "" H 4900 5475 50  0000 C CNN
+	1    4900 5475
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C6
+U 1 1 57FAE70F
+P 4650 5250
+F 0 "C6" H 4675 5350 50  0000 L CNN
+F 1 "0.1uF" H 4675 5150 50  0000 L CNN
+F 2 "Angrywasp:0805_HS" H 4688 5100 50  0001 C CNN
+F 3 "" H 4650 5250 50  0000 C CNN
+	1    4650 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 57FAEB90
+P 4400 5250
+F 0 "C5" H 4425 5350 50  0000 L CNN
+F 1 "10uF" H 4425 5150 50  0000 L CNN
+F 2 "Angrywasp:0805_HS" H 4438 5100 50  0001 C CNN
+F 3 "" H 4400 5250 50  0000 C CNN
+	1    4400 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR05
+U 1 1 57FAEE5E
+P 4350 4750
+F 0 "#PWR05" H 4350 4600 50  0001 C CNN
+F 1 "+3.3V" H 4350 4890 50  0000 C CNN
+F 2 "" H 4350 4750 50  0000 C CNN
+F 3 "" H 4350 4750 50  0000 C CNN
+	1    4350 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR06
+U 1 1 57FAFD4E
+P 6150 5300
+F 0 "#PWR06" H 6150 5050 50  0001 C CNN
+F 1 "GND" H 6150 5150 50  0000 C CNN
+F 2 "" H 6150 5300 50  0000 C CNN
+F 3 "" H 6150 5300 50  0000 C CNN
+	1    6150 5300
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR07
+U 1 1 57FB12BC
+P 3075 2550
+F 0 "#PWR07" H 3075 2300 50  0001 C CNN
+F 1 "GND" H 3075 2400 50  0000 C CNN
+F 2 "" H 3075 2550 50  0000 C CNN
+F 3 "" H 3075 2550 50  0000 C CNN
+	1    3075 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR08
+U 1 1 57FB1415
+P 4275 2475
+F 0 "#PWR08" H 4275 2225 50  0001 C CNN
+F 1 "GND" H 4275 2325 50  0000 C CNN
+F 2 "" H 4275 2475 50  0000 C CNN
+F 3 "" H 4275 2475 50  0000 C CNN
+	1    4275 2475
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR09
+U 1 1 57FB1704
+P 4275 1825
+F 0 "#PWR09" H 4275 1675 50  0001 C CNN
+F 1 "+3.3V" H 4275 1965 50  0000 C CNN
+F 2 "" H 4275 1825 50  0000 C CNN
+F 3 "" H 4275 1825 50  0000 C CNN
+	1    4275 1825
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:Propeller-Propeller-rescue U1
+U 1 1 57FB467F
+P 2100 3400
+F 0 "U1" H 2100 3325 60  0000 C CNN
+F 1 "Propeller" H 2100 3475 60  0000 C CNN
+F 2 "Angrywasp:P8X32A" H 1525 3600 60  0001 C CNN
+F 3 "" H 1525 3600 60  0001 C CNN
+	1    2100 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 57FB4BE9
+P 1950 1925
+F 0 "#PWR010" H 1950 1675 50  0001 C CNN
+F 1 "GND" H 1950 1775 50  0000 C CNN
+F 2 "" H 1950 1925 50  0000 C CNN
+F 3 "" H 1950 1925 50  0000 C CNN
+	1    1950 1925
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 57FB558F
+P 2500 4675
+F 0 "C1" H 2525 4775 50  0000 L CNN
+F 1 "0.1uF" H 2525 4575 50  0000 L CNN
+F 2 "Angrywasp:0805_HS" H 2538 4525 50  0001 C CNN
+F 3 "" H 2500 4675 50  0000 C CNN
+	1    2500 4675
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 57FB5670
+P 2500 4875
+F 0 "C2" H 2525 4975 50  0000 L CNN
+F 1 "0.1uF" H 2525 4775 50  0000 L CNN
+F 2 "Angrywasp:0805_HS" H 2538 4725 50  0001 C CNN
+F 3 "" H 2500 4875 50  0000 C CNN
+	1    2500 4875
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 57FB56AF
+P 2500 5075
+F 0 "C3" H 2525 5175 50  0000 L CNN
+F 1 "0.1uF" H 2525 4975 50  0000 L CNN
+F 2 "Angrywasp:0805_HS" H 2538 4925 50  0001 C CNN
+F 3 "" H 2500 5075 50  0000 C CNN
+	1    2500 5075
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 57FB5770
+P 2500 5275
+F 0 "C4" H 2525 5375 50  0000 L CNN
+F 1 "0.1uF" H 2525 5175 50  0000 L CNN
+F 2 "Angrywasp:0805_HS" H 2538 5125 50  0001 C CNN
+F 3 "" H 2500 5275 50  0000 C CNN
+	1    2500 5275
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR011
+U 1 1 57FB6054
+P 2700 5450
+F 0 "#PWR011" H 2700 5200 50  0001 C CNN
+F 1 "GND" H 2700 5300 50  0000 C CNN
+F 2 "" H 2700 5450 50  0000 C CNN
+F 3 "" H 2700 5450 50  0000 C CNN
+	1    2700 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR012
+U 1 1 57FB6089
+P 2250 5475
+F 0 "#PWR012" H 2250 5325 50  0001 C CNN
+F 1 "+3.3V" H 2250 5615 50  0000 C CNN
+F 2 "" H 2250 5475 50  0000 C CNN
+F 3 "" H 2250 5475 50  0000 C CNN
+	1    2250 5475
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR013
+U 1 1 57FB6895
+P 1325 4800
+F 0 "#PWR013" H 1325 4550 50  0001 C CNN
+F 1 "GND" H 1325 4650 50  0000 C CNN
+F 2 "" H 1325 4800 50  0000 C CNN
+F 3 "" H 1325 4800 50  0000 C CNN
+	1    1325 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 57FB8100
+P 4425 2550
+F 0 "R1" V 4505 2550 50  0000 C CNN
+F 1 "10k" V 4425 2550 50  0000 C CNN
+F 2 "Angrywasp:0805_HS" V 4355 2550 50  0001 C CNN
+F 3 "" H 4425 2550 50  0000 C CNN
+	1    4425 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Crystal_Small Y1
+U 1 1 57FB8AF2
+P 2850 4425
+F 0 "Y1" H 2850 4525 50  0000 C CNN
+F 1 "5Mhz" H 2850 4325 50  0000 C CNN
+F 2 "Angrywasp:XTAL-2" H 2850 4425 50  0001 C CNN
+F 3 "" H 2850 4425 50  0000 C CNN
+	1    2850 4425
+	-1   0    0    1   
+$EndComp
+Text GLabel 7525 3650 2    60   Input ~ 0
+4A
+Text GLabel 7525 3950 2    60   Input ~ 0
+3A
+Text GLabel 6275 3550 0    60   Input ~ 0
+1A
+Text GLabel 6275 3850 0    60   Input ~ 0
+2A
+Text GLabel 5125 6400 3    60   Input ~ 0
+Vin1
+Text GLabel 5250 6400 3    60   Input ~ 0
+Vin2
+Text GLabel 5375 6400 3    60   Input ~ 0
+Vin3
+Text GLabel 5500 6400 3    60   Input ~ 0
+Vin4
+Text GLabel 5625 6400 3    60   Input ~ 0
+Vin5
+Text GLabel 5750 6400 3    60   Input ~ 0
+Vin6
+Text GLabel 5875 6400 3    60   Input ~ 0
+Vin7
+Text GLabel 6000 6400 3    60   Input ~ 0
+Vin8
+$Comp
+L Device:R R2
+U 1 1 57FBFB17
+P 4625 2550
+F 0 "R2" V 4705 2550 50  0000 C CNN
+F 1 "10k" V 4625 2550 50  0000 C CNN
+F 2 "Angrywasp:0805_HS" V 4555 2550 50  0001 C CNN
+F 3 "" H 4625 2550 50  0000 C CNN
+	1    4625 2550
+	1    0    0    -1  
+$EndComp
+Text GLabel 4850 2725 2    60   Input ~ 0
+SDA
+Text GLabel 4850 2875 2    60   Input ~ 0
+SCL
+$Comp
+L power:GND #PWR014
+U 1 1 57FAF2BC
+P 4400 5475
+F 0 "#PWR014" H 4400 5225 50  0001 C CNN
+F 1 "GND" H 4400 5325 50  0000 C CNN
+F 2 "" H 4400 5475 50  0000 C CNN
+F 3 "" H 4400 5475 50  0000 C CNN
+	1    4400 5475
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR015
+U 1 1 57FAF086
+P 4650 5475
+F 0 "#PWR015" H 4650 5225 50  0001 C CNN
+F 1 "GND" H 4650 5325 50  0000 C CNN
+F 2 "" H 4650 5475 50  0000 C CNN
+F 3 "" H 4650 5475 50  0000 C CNN
+	1    4650 5475
+	1    0    0    -1  
+$EndComp
+Text GLabel 6275 3700 0    60   Input ~ 0
+1Y
+Text GLabel 6275 4000 0    60   Input ~ 0
+2Y
+Text GLabel 7525 4100 2    60   Input ~ 0
+3Y
+Text GLabel 7525 3800 2    60   Input ~ 0
+4Y
+Text GLabel 3450 3225 2    60   Input ~ 0
+1Y
+Text GLabel 3450 3350 2    60   Input ~ 0
+2Y
+Text GLabel 3450 3100 2    60   Input ~ 0
+3Y
+Text GLabel 3450 2975 2    60   Input ~ 0
+4Y
+Text GLabel 925  2225 0    60   Input ~ 0
+CONVST
+Text GLabel 925  2350 0    60   Input ~ 0
+SCLK
+Text GLabel 925  2475 0    60   Input ~ 0
+DIN
+Text GLabel 925  2600 0    60   Input ~ 0
+DOUT
+Text GLabel 3450 4350 2    60   Input ~ 0
+P16
+Text GLabel 3450 4225 2    60   Input ~ 0
+P17
+Text GLabel 3450 4100 2    60   Input ~ 0
+P18
+Text GLabel 3450 3975 2    60   Input ~ 0
+P19
+Text GLabel 3450 3850 2    60   Input ~ 0
+P20
+Text GLabel 3450 3725 2    60   Input ~ 0
+P21
+Text GLabel 3450 3600 2    60   Input ~ 0
+P22
+Text GLabel 3450 3475 2    60   Input ~ 0
+P23
+Text GLabel 925  3100 0    60   Input ~ 0
+P7
+Text GLabel 925  2975 0    60   Input ~ 0
+P6
+Text GLabel 925  2850 0    60   Input ~ 0
+P5
+Text GLabel 925  2725 0    60   Input ~ 0
+P4
+Text GLabel 2800 2525 2    60   Input ~ 0
+RX
+Text GLabel 2800 2650 2    60   Input ~ 0
+TX
+Text GLabel 975  4300 0    60   Input ~ 0
+RESn
+Text GLabel 7775 5050 2    60   Input ~ 0
+CONVST
+Text GLabel 7775 5175 2    60   Input ~ 0
+SCLK
+Text GLabel 7775 5325 2    60   Input ~ 0
+DIN
+Text GLabel 7775 5450 2    60   Input ~ 0
+DOUT
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P1
+U 1 1 57FDF9AA
+P 8755 4920
+F 0 "P1" H 8755 5070 50  0000 C CNN
+F 1 "CONN_01X02" V 8855 4920 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 8755 4920 50  0001 C CNN
+F 3 "" H 8755 4920 50  0000 C CNN
+	1    8755 4920
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR016
+U 1 1 57FDFA9B
+P 8555 4870
+F 0 "#PWR016" H 8555 4720 50  0001 C CNN
+F 1 "+3.3V" H 8555 5010 50  0000 C CNN
+F 2 "" H 8555 4870 50  0000 C CNN
+F 3 "" H 8555 4870 50  0000 C CNN
+	1    8555 4870
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR017
+U 1 1 57FDFACD
+P 8555 4970
+F 0 "#PWR017" H 8555 4720 50  0001 C CNN
+F 1 "GND" H 8555 4820 50  0000 C CNN
+F 2 "" H 8555 4970 50  0000 C CNN
+F 3 "" H 8555 4970 50  0000 C CNN
+	1    8555 4970
+	1    0    0    -1  
+$EndComp
+Text GLabel 8490 4330 0    60   Input ~ 0
+RX
+Text GLabel 8490 4455 0    60   Input ~ 0
+TX
+Text GLabel 9385 4320 0    60   Input ~ 0
+RESn
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P4
+U 1 1 57FE3FA9
+P 9635 4920
+F 0 "P4" H 9635 5070 50  0000 C CNN
+F 1 "CONN_01X02" V 9735 4920 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 9635 4920 50  0001 C CNN
+F 3 "" H 9635 4920 50  0000 C CNN
+	1    9635 4920
+	1    0    0    -1  
+$EndComp
+Text GLabel 9385 4845 0    60   Input ~ 0
+3A
+Text GLabel 9385 4470 0    60   Input ~ 0
+2A
+Text GLabel 9410 4620 0    60   Input ~ 0
+1A
+Text GLabel 9385 4995 0    60   Input ~ 0
+4A
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P7
+U 1 1 57FEAA7B
+P 8700 1200
+F 0 "P7" H 8700 1350 50  0000 C CNN
+F 1 "CONN_01X02" V 8800 1200 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 8700 1200 50  0001 C CNN
+F 3 "" H 8700 1200 50  0000 C CNN
+	1    8700 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P8
+U 1 1 57FEB234
+P 8700 1675
+F 0 "P8" H 8700 1825 50  0000 C CNN
+F 1 "CONN_01X02" V 8800 1675 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 8700 1675 50  0001 C CNN
+F 3 "" H 8700 1675 50  0000 C CNN
+	1    8700 1675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P9
+U 1 1 57FEB2B4
+P 8725 2250
+F 0 "P9" H 8725 2400 50  0000 C CNN
+F 1 "CONN_01X02" V 8825 2250 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 8725 2250 50  0001 C CNN
+F 3 "" H 8725 2250 50  0000 C CNN
+	1    8725 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P10
+U 1 1 57FEB339
+P 8750 2825
+F 0 "P10" H 8750 2975 50  0000 C CNN
+F 1 "CONN_01X02" V 8850 2825 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 8750 2825 50  0001 C CNN
+F 3 "" H 8750 2825 50  0000 C CNN
+	1    8750 2825
+	1    0    0    -1  
+$EndComp
+Text GLabel 8450 1275 0    60   Input ~ 0
+Vin1
+Text GLabel 8450 1125 0    60   Input ~ 0
+Vin2
+Text GLabel 8450 1750 0    60   Input ~ 0
+Vin3
+Text GLabel 8450 1600 0    60   Input ~ 0
+Vin4
+Text GLabel 8475 2175 0    60   Input ~ 0
+Vin5
+Text GLabel 8475 2325 0    60   Input ~ 0
+Vin6
+Text GLabel 8500 2900 0    60   Input ~ 0
+Vin7
+Text GLabel 8500 2750 0    60   Input ~ 0
+Vin8
+Text GLabel 925  3250 0    60   Input ~ 0
+P8
+Text GLabel 925  3375 0    60   Input ~ 0
+P9
+Text GLabel 925  3500 0    60   Input ~ 0
+P10
+Text GLabel 975  3650 0    60   Input ~ 0
+P11
+Text GLabel 925  3775 0    60   Input ~ 0
+P12
+Text GLabel 925  3900 0    60   Input ~ 0
+P13
+Text GLabel 925  4025 0    60   Input ~ 0
+P14
+Text GLabel 925  4150 0    60   Input ~ 0
+P15
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P15
+U 1 1 58001F98
+P 9525 2250
+F 0 "P15" H 9525 2400 50  0000 C CNN
+F 1 "CONN_01X02" V 9625 2250 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 9525 2250 50  0001 C CNN
+F 3 "" H 9525 2250 50  0000 C CNN
+	1    9525 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P16
+U 1 1 58001F9E
+P 9550 2825
+F 0 "P16" H 9550 2975 50  0000 C CNN
+F 1 "CONN_01X02" V 9650 2825 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 9550 2825 50  0001 C CNN
+F 3 "" H 9550 2825 50  0000 C CNN
+	1    9550 2825
+	1    0    0    -1  
+$EndComp
+Text GLabel 9275 2175 0    60   Input ~ 0
+P13
+Text GLabel 9275 2325 0    60   Input ~ 0
+P12
+Text GLabel 9300 2750 0    60   Input ~ 0
+P15
+Text GLabel 9300 2900 0    60   Input ~ 0
+P14
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P17
+U 1 1 5800212E
+P 10390 3820
+F 0 "P17" H 10390 3970 50  0000 C CNN
+F 1 "CONN_01X02" V 10490 3820 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 10390 3820 50  0001 C CNN
+F 3 "" H 10390 3820 50  0000 C CNN
+	1    10390 3820
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P18
+U 1 1 58002134
+P 10390 3410
+F 0 "P18" H 10390 3560 50  0000 C CNN
+F 1 "CONN_01X02" V 10490 3410 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 10390 3410 50  0001 C CNN
+F 3 "" H 10390 3410 50  0000 C CNN
+	1    10390 3410
+	1    0    0    -1  
+$EndComp
+Text GLabel 10140 3745 0    60   Input ~ 0
+P17
+Text GLabel 10140 3895 0    60   Input ~ 0
+P16
+Text GLabel 10140 3335 0    60   Input ~ 0
+P19
+Text GLabel 10140 3485 0    60   Input ~ 0
+P18
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P2
+U 1 1 58009717
+P 8740 4405
+F 0 "P2" H 8740 4555 50  0000 C CNN
+F 1 "CONN_01X02" V 8840 4405 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 8740 4405 50  0001 C CNN
+F 3 "" H 8740 4405 50  0000 C CNN
+	1    8740 4405
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P6
+U 1 1 5833B0B7
+P 9570 3330
+F 0 "P6" H 9570 3480 50  0000 C CNN
+F 1 "CONN_01X02" V 9670 3330 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 9570 3330 50  0001 C CNN
+F 3 "" H 9570 3330 50  0000 C CNN
+	1    9570 3330
+	1    0    0    -1  
+$EndComp
+Text GLabel 9320 3255 0    60   Input ~ 0
+P11
+Text GLabel 9320 3405 0    60   Input ~ 0
+P10
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P11
+U 1 1 5833B2FB
+P 9570 3865
+F 0 "P11" H 9570 4015 50  0000 C CNN
+F 1 "CONN_01X02" V 9670 3865 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 9570 3865 50  0001 C CNN
+F 3 "" H 9570 3865 50  0000 C CNN
+	1    9570 3865
+	1    0    0    -1  
+$EndComp
+Text GLabel 9320 3790 0    60   Input ~ 0
+P9
+Text GLabel 9320 3940 0    60   Input ~ 0
+P8
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P19
+U 1 1 5833B8DE
+P 10375 2955
+F 0 "P19" H 10375 3105 50  0000 C CNN
+F 1 "CONN_01X02" V 10475 2955 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 10375 2955 50  0001 C CNN
+F 3 "" H 10375 2955 50  0000 C CNN
+	1    10375 2955
+	1    0    0    -1  
+$EndComp
+Text GLabel 10125 2880 0    60   Input ~ 0
+P21
+Text GLabel 10125 3030 0    60   Input ~ 0
+P20
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P14
+U 1 1 5833BACE
+P 10365 2475
+F 0 "P14" H 10365 2625 50  0000 C CNN
+F 1 "CONN_01X02" V 10465 2475 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 10365 2475 50  0001 C CNN
+F 3 "" H 10365 2475 50  0000 C CNN
+	1    10365 2475
+	1    0    0    -1  
+$EndComp
+Text GLabel 10115 2400 0    60   Input ~ 0
+P23
+Text GLabel 10115 2550 0    60   Input ~ 0
+P22
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P13
+U 1 1 5833BCF2
+P 10340 1990
+F 0 "P13" H 10340 2140 50  0000 C CNN
+F 1 "CONN_01X02" V 10440 1990 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 10340 1990 50  0001 C CNN
+F 3 "" H 10340 1990 50  0000 C CNN
+	1    10340 1990
+	1    0    0    -1  
+$EndComp
+Text GLabel 10090 1915 0    60   Input ~ 0
+P5
+Text GLabel 10090 2065 0    60   Input ~ 0
+P4
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P12
+U 1 1 5833BED3
+P 10340 1550
+F 0 "P12" H 10340 1700 50  0000 C CNN
+F 1 "CONN_01X02" V 10440 1550 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 10340 1550 50  0001 C CNN
+F 3 "" H 10340 1550 50  0000 C CNN
+	1    10340 1550
+	1    0    0    -1  
+$EndComp
+Text GLabel 10090 1475 0    60   Input ~ 0
+P7
+Text GLabel 10090 1625 0    60   Input ~ 0
+P6
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P5
+U 1 1 5833C3B7
+P 8765 3370
+F 0 "P5" H 8765 3520 50  0000 C CNN
+F 1 "CONN_01X02" V 8865 3370 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 8765 3370 50  0001 C CNN
+F 3 "" H 8765 3370 50  0000 C CNN
+	1    8765 3370
+	1    0    0    -1  
+$EndComp
+Text GLabel 8515 3445 0    60   Input ~ 0
+SDA
+Text GLabel 8515 3295 0    60   Input ~ 0
+SCL
+Wire Wire Line
+	4350 4825 4350 4750
+Connection ~ 4400 4825
+Wire Wire Line
+	4400 5100 4400 4825
+Connection ~ 4650 4825
+Wire Wire Line
+	4650 4825 4650 5100
+Wire Wire Line
+	4650 5475 4650 5400
+Wire Wire Line
+	4400 5475 4400 5400
+Wire Wire Line
+	5250 5400 5250 6400
+Wire Wire Line
+	5375 5500 5375 6400
+Wire Wire Line
+	5500 5600 5500 6400
+Wire Wire Line
+	6000 6100 6000 6400
+Wire Wire Line
+	7350 6100 6000 6100
+Wire Wire Line
+	7350 5900 7350 6100
+Wire Wire Line
+	5625 5700 5625 6400
+Wire Wire Line
+	5750 5800 5750 6400
+Wire Wire Line
+	5875 5900 5875 6400
+Wire Wire Line
+	2725 2850 4200 2850
+Wire Wire Line
+	4825 2875 4850 2875
+Wire Wire Line
+	4825 2850 4825 2875
+Wire Wire Line
+	4825 2725 4850 2725
+Wire Wire Line
+	4825 2750 4825 2725
+Connection ~ 4425 2250
+Wire Wire Line
+	4625 2250 4625 2400
+Connection ~ 4275 2250
+Wire Wire Line
+	4425 2250 4425 2400
+Connection ~ 4625 2850
+Wire Wire Line
+	4625 2850 4625 2700
+Connection ~ 4425 2750
+Wire Wire Line
+	4425 2750 4425 2700
+Connection ~ 4200 2850
+Wire Wire Line
+	4200 2450 4200 2850
+Connection ~ 4100 2750
+Wire Wire Line
+	4100 2550 4100 2750
+Wire Wire Line
+	1350 2550 1350 2225
+Wire Wire Line
+	1475 2550 1350 2550
+Wire Wire Line
+	1300 2650 1300 2350
+Wire Wire Line
+	1475 2650 1300 2650
+Wire Wire Line
+	1250 2750 1250 2475
+Wire Wire Line
+	1475 2750 1250 2750
+Wire Wire Line
+	1200 2850 1200 2600
+Wire Wire Line
+	1475 2850 1200 2850
+Wire Wire Line
+	1150 2725 1150 2950
+Wire Wire Line
+	1150 2950 1475 2950
+Wire Wire Line
+	1100 3050 1100 2850
+Wire Wire Line
+	1475 3050 1100 3050
+Wire Wire Line
+	1050 3150 1050 2975
+Wire Wire Line
+	1475 3150 1050 3150
+Wire Wire Line
+	1000 3100 925  3100
+Wire Wire Line
+	1000 3100 1000 3250
+Wire Wire Line
+	1000 3250 1475 3250
+Wire Wire Line
+	6475 3550 6275 3550
+Wire Wire Line
+	6475 3850 6275 3850
+Wire Wire Line
+	7525 3950 7325 3950
+Wire Wire Line
+	7325 3650 7525 3650
+Wire Wire Line
+	2975 4425 2950 4425
+Wire Wire Line
+	2975 4150 2975 4425
+Wire Wire Line
+	2725 4150 2975 4150
+Wire Wire Line
+	2725 4425 2750 4425
+Wire Wire Line
+	2725 4250 2725 4425
+Wire Wire Line
+	4050 2450 4200 2450
+Wire Wire Line
+	4100 2550 4050 2550
+Wire Wire Line
+	2725 2750 4100 2750
+Wire Wire Line
+	1325 4150 1325 4800
+Wire Wire Line
+	1475 4150 1325 4150
+Connection ~ 2700 5275
+Connection ~ 2700 4875
+Wire Wire Line
+	2650 4875 2700 4875
+Connection ~ 2700 5075
+Wire Wire Line
+	2700 5075 2650 5075
+Wire Wire Line
+	2700 5275 2650 5275
+Wire Wire Line
+	2700 4675 2700 4875
+Wire Wire Line
+	2650 4675 2700 4675
+Connection ~ 1950 4675
+Wire Wire Line
+	2350 4675 1950 4675
+Connection ~ 2050 4875
+Wire Wire Line
+	2350 4875 2050 4875
+Connection ~ 2150 5075
+Wire Wire Line
+	2350 5075 2150 5075
+Connection ~ 2150 5275
+Wire Wire Line
+	2150 5275 2150 5075
+Connection ~ 2050 5275
+Wire Wire Line
+	2050 4650 2050 4875
+Wire Wire Line
+	1950 4650 1950 4675
+Connection ~ 2250 5275
+Wire Wire Line
+	1950 5275 2050 5275
+Wire Wire Line
+	2250 4650 2250 5275
+Connection ~ 2150 2100
+Wire Wire Line
+	2250 2100 2250 2150
+Connection ~ 2050 2100
+Wire Wire Line
+	2150 2100 2150 2150
+Connection ~ 1950 2100
+Wire Wire Line
+	1950 2100 2050 2100
+Wire Wire Line
+	2050 2150 2050 2100
+Wire Wire Line
+	1950 1925 1950 2100
+Wire Wire Line
+	4275 1825 4275 2250
+Wire Wire Line
+	4050 2250 4275 2250
+Wire Wire Line
+	4275 2350 4050 2350
+Wire Wire Line
+	4275 2475 4275 2350
+Connection ~ 3175 2550
+Connection ~ 3175 2450
+Wire Wire Line
+	3175 2450 3250 2450
+Connection ~ 3175 2350
+Wire Wire Line
+	3250 2350 3175 2350
+Wire Wire Line
+	3175 2250 3250 2250
+Wire Wire Line
+	3175 2250 3175 2350
+Wire Wire Line
+	3075 2550 3175 2550
+Connection ~ 7550 5800
+Wire Wire Line
+	5875 5900 6250 5900
+Wire Wire Line
+	5750 5800 6250 5800
+Wire Wire Line
+	5625 5700 6250 5700
+Wire Wire Line
+	5500 5600 6250 5600
+Wire Wire Line
+	5375 5500 6250 5500
+Wire Wire Line
+	5250 5400 6250 5400
+Connection ~ 6250 4825
+Wire Wire Line
+	4900 5475 4900 5400
+Wire Wire Line
+	6250 4825 6250 5000
+Wire Wire Line
+	7350 4825 7350 5000
+Wire Wire Line
+	4900 5100 6250 5100
+Wire Wire Line
+	6150 5300 6250 5300
+Wire Wire Line
+	7550 5700 7550 5800
+Wire Wire Line
+	7350 5800 7550 5800
+Wire Wire Line
+	7350 5700 7550 5700
+Wire Wire Line
+	7350 5400 7725 5400
+Wire Wire Line
+	7350 5300 7725 5300
+Wire Wire Line
+	7350 5200 7725 5200
+Connection ~ 7425 5100
+Connection ~ 7425 5500
+Wire Wire Line
+	7350 5100 7425 5100
+Wire Wire Line
+	7425 5500 7350 5500
+Wire Wire Line
+	7425 5100 7425 5500
+Wire Wire Line
+	7425 5600 7350 5600
+Wire Wire Line
+	7500 3450 7500 3275
+Connection ~ 7425 3550
+Connection ~ 6375 3450
+Wire Wire Line
+	7425 3300 6375 3300
+Wire Wire Line
+	6375 3450 6475 3450
+Wire Wire Line
+	6375 3300 6375 3450
+Wire Wire Line
+	6375 3750 6475 3750
+Wire Wire Line
+	7425 3550 7325 3550
+Wire Wire Line
+	7425 3300 7425 3450
+Wire Wire Line
+	7425 3850 7325 3850
+Wire Wire Line
+	6350 4050 6350 4150
+Wire Wire Line
+	6475 4050 6350 4050
+Wire Wire Line
+	7325 3450 7425 3450
+Wire Wire Line
+	4350 4825 4400 4825
+Wire Wire Line
+	6250 5200 5125 5200
+Wire Wire Line
+	5125 5200 5125 6400
+Wire Wire Line
+	6475 3650 6325 3650
+Wire Wire Line
+	6325 3650 6325 3700
+Wire Wire Line
+	6325 3700 6275 3700
+Wire Wire Line
+	6475 3950 6325 3950
+Wire Wire Line
+	6325 3950 6325 4000
+Wire Wire Line
+	6325 4000 6275 4000
+Wire Wire Line
+	7325 4050 7475 4050
+Wire Wire Line
+	7475 4050 7475 4100
+Wire Wire Line
+	7475 4100 7525 4100
+Wire Wire Line
+	7325 3750 7475 3750
+Wire Wire Line
+	7475 3750 7475 3800
+Wire Wire Line
+	7475 3800 7525 3800
+Wire Wire Line
+	1475 3350 975  3350
+Wire Wire Line
+	975  3350 975  3250
+Wire Wire Line
+	975  3250 925  3250
+Wire Wire Line
+	1475 3450 975  3450
+Wire Wire Line
+	975  3450 975  3375
+Wire Wire Line
+	975  3375 925  3375
+Wire Wire Line
+	1475 3550 975  3550
+Wire Wire Line
+	975  3550 975  3500
+Wire Wire Line
+	975  3500 925  3500
+Wire Wire Line
+	1475 3650 975  3650
+Wire Wire Line
+	1475 3750 975  3750
+Wire Wire Line
+	975  3750 975  3775
+Wire Wire Line
+	1475 3850 975  3850
+Wire Wire Line
+	975  3850 975  3900
+Wire Wire Line
+	975  3900 925  3900
+Wire Wire Line
+	1475 3950 975  3950
+Wire Wire Line
+	975  3950 975  4025
+Wire Wire Line
+	975  4025 925  4025
+Wire Wire Line
+	975  4050 1475 4050
+Wire Wire Line
+	975  4050 975  4150
+Wire Wire Line
+	975  4150 925  4150
+Wire Wire Line
+	2725 4050 3025 4050
+Wire Wire Line
+	3025 4050 3025 4350
+Wire Wire Line
+	3025 4350 3450 4350
+Wire Wire Line
+	2725 3950 3075 3950
+Wire Wire Line
+	3075 3950 3075 4225
+Wire Wire Line
+	3075 4225 3450 4225
+Wire Wire Line
+	2725 3850 3125 3850
+Wire Wire Line
+	3125 3850 3125 4100
+Wire Wire Line
+	3125 4100 3450 4100
+Wire Wire Line
+	2725 3750 3175 3750
+Wire Wire Line
+	3175 3750 3175 3975
+Wire Wire Line
+	3175 3975 3450 3975
+Wire Wire Line
+	2725 3650 3225 3650
+Wire Wire Line
+	3225 3650 3225 3850
+Wire Wire Line
+	3225 3850 3450 3850
+Wire Wire Line
+	2725 3550 3275 3550
+Wire Wire Line
+	3275 3550 3275 3725
+Wire Wire Line
+	3275 3725 3450 3725
+Wire Wire Line
+	2725 3450 3325 3450
+Wire Wire Line
+	3325 3450 3325 3600
+Wire Wire Line
+	3325 3600 3450 3600
+Wire Wire Line
+	2725 3350 3375 3350
+Wire Wire Line
+	3375 3350 3375 3475
+Wire Wire Line
+	3375 3475 3450 3475
+Wire Wire Line
+	2725 3250 3425 3250
+Wire Wire Line
+	3425 3250 3425 3350
+Wire Wire Line
+	3425 3350 3450 3350
+Wire Wire Line
+	2725 3150 3400 3150
+Wire Wire Line
+	3400 3150 3400 3225
+Wire Wire Line
+	3400 3225 3450 3225
+Wire Wire Line
+	2725 3050 3375 3050
+Wire Wire Line
+	3375 3050 3375 3100
+Wire Wire Line
+	3375 3100 3450 3100
+Wire Wire Line
+	2725 2950 3400 2950
+Wire Wire Line
+	3400 2950 3400 2975
+Wire Wire Line
+	3400 2975 3450 2975
+Wire Wire Line
+	2725 2650 2800 2650
+Wire Wire Line
+	2725 2550 2775 2550
+Wire Wire Line
+	2775 2550 2775 2525
+Wire Wire Line
+	2775 2525 2800 2525
+Wire Wire Line
+	1475 4250 1075 4250
+Wire Wire Line
+	1075 4250 1075 4300
+Wire Wire Line
+	1075 4300 975  4300
+Wire Wire Line
+	7725 5100 7725 5050
+Wire Wire Line
+	7725 5050 7775 5050
+Wire Wire Line
+	7725 5200 7725 5175
+Wire Wire Line
+	7725 5175 7775 5175
+Wire Wire Line
+	7725 5300 7725 5325
+Wire Wire Line
+	7725 5325 7775 5325
+Wire Wire Line
+	7725 5400 7725 5450
+Wire Wire Line
+	7725 5450 7775 5450
+Wire Wire Line
+	975  3775 925  3775
+Wire Wire Line
+	1050 2975 925  2975
+Wire Wire Line
+	1100 2850 925  2850
+Wire Wire Line
+	925  2725 1150 2725
+Wire Wire Line
+	1200 2600 925  2600
+Wire Wire Line
+	1250 2475 925  2475
+Wire Wire Line
+	1300 2350 925  2350
+Wire Wire Line
+	1350 2225 925  2225
+Connection ~ 7425 3450
+Wire Wire Line
+	8540 4455 8490 4455
+Wire Wire Line
+	8540 4355 8515 4355
+Wire Wire Line
+	8515 4355 8515 4330
+Wire Wire Line
+	8515 4330 8490 4330
+Wire Wire Line
+	9435 4345 9410 4345
+Wire Wire Line
+	9410 4345 9410 4320
+Wire Wire Line
+	9410 4320 9385 4320
+Wire Wire Line
+	9435 4445 9410 4445
+Wire Wire Line
+	9410 4445 9410 4470
+Wire Wire Line
+	9410 4470 9385 4470
+Wire Wire Line
+	9435 4870 9410 4870
+Wire Wire Line
+	9410 4870 9410 4845
+Wire Wire Line
+	9410 4845 9385 4845
+Wire Wire Line
+	9435 4970 9410 4970
+Wire Wire Line
+	9410 4970 9410 4995
+Wire Wire Line
+	9410 4995 9385 4995
+Wire Wire Line
+	8550 2775 8525 2775
+Wire Wire Line
+	8525 2775 8525 2750
+Wire Wire Line
+	8525 2750 8500 2750
+Wire Wire Line
+	8550 2875 8525 2875
+Wire Wire Line
+	8525 2875 8525 2900
+Wire Wire Line
+	8525 2900 8500 2900
+Wire Wire Line
+	8525 2300 8500 2300
+Wire Wire Line
+	8500 2300 8500 2325
+Wire Wire Line
+	8500 2325 8475 2325
+Wire Wire Line
+	8525 2200 8500 2200
+Wire Wire Line
+	8500 2200 8500 2175
+Wire Wire Line
+	8500 2175 8475 2175
+Wire Wire Line
+	8500 1725 8475 1725
+Wire Wire Line
+	8475 1725 8475 1750
+Wire Wire Line
+	8475 1750 8450 1750
+Wire Wire Line
+	8500 1625 8475 1625
+Wire Wire Line
+	8475 1625 8475 1600
+Wire Wire Line
+	8475 1600 8450 1600
+Wire Wire Line
+	8500 1250 8475 1250
+Wire Wire Line
+	8475 1250 8475 1275
+Wire Wire Line
+	8475 1275 8450 1275
+Wire Wire Line
+	8500 1150 8475 1150
+Wire Wire Line
+	8475 1150 8475 1125
+Wire Wire Line
+	8475 1125 8450 1125
+Wire Wire Line
+	9350 2775 9325 2775
+Wire Wire Line
+	9325 2775 9325 2750
+Wire Wire Line
+	9325 2750 9300 2750
+Wire Wire Line
+	9350 2875 9325 2875
+Wire Wire Line
+	9325 2875 9325 2900
+Wire Wire Line
+	9325 2900 9300 2900
+Wire Wire Line
+	9325 2300 9300 2300
+Wire Wire Line
+	9300 2300 9300 2325
+Wire Wire Line
+	9300 2325 9275 2325
+Wire Wire Line
+	9325 2200 9300 2200
+Wire Wire Line
+	9300 2200 9300 2175
+Wire Wire Line
+	9300 2175 9275 2175
+Wire Wire Line
+	10190 3460 10165 3460
+Wire Wire Line
+	10165 3460 10165 3485
+Wire Wire Line
+	10165 3485 10140 3485
+Wire Wire Line
+	10190 3360 10165 3360
+Wire Wire Line
+	10165 3360 10165 3335
+Wire Wire Line
+	10165 3335 10140 3335
+Wire Wire Line
+	10190 3870 10165 3870
+Wire Wire Line
+	10165 3870 10165 3895
+Wire Wire Line
+	10165 3895 10140 3895
+Wire Wire Line
+	10190 3770 10165 3770
+Wire Wire Line
+	10165 3770 10165 3745
+Wire Wire Line
+	10165 3745 10140 3745
+Wire Wire Line
+	9435 4545 9435 4620
+Wire Wire Line
+	9435 4620 9410 4620
+Wire Wire Line
+	9370 3280 9345 3280
+Wire Wire Line
+	9345 3280 9345 3255
+Wire Wire Line
+	9345 3255 9320 3255
+Wire Wire Line
+	9370 3380 9345 3380
+Wire Wire Line
+	9345 3380 9345 3405
+Wire Wire Line
+	9345 3405 9320 3405
+Wire Wire Line
+	9370 3815 9345 3815
+Wire Wire Line
+	9345 3815 9345 3790
+Wire Wire Line
+	9345 3790 9320 3790
+Wire Wire Line
+	9370 3915 9345 3915
+Wire Wire Line
+	9345 3915 9345 3940
+Wire Wire Line
+	9345 3940 9320 3940
+Wire Wire Line
+	10175 3005 10150 3005
+Wire Wire Line
+	10150 3005 10150 3030
+Wire Wire Line
+	10150 3030 10125 3030
+Wire Wire Line
+	10175 2905 10150 2905
+Wire Wire Line
+	10150 2905 10150 2880
+Wire Wire Line
+	10150 2880 10125 2880
+Wire Wire Line
+	10165 2525 10140 2525
+Wire Wire Line
+	10140 2525 10140 2550
+Wire Wire Line
+	10140 2550 10115 2550
+Wire Wire Line
+	10165 2425 10140 2425
+Wire Wire Line
+	10140 2425 10140 2400
+Wire Wire Line
+	10140 2400 10115 2400
+Wire Wire Line
+	10140 2040 10115 2040
+Wire Wire Line
+	10115 2040 10115 2065
+Wire Wire Line
+	10115 2065 10090 2065
+Wire Wire Line
+	10140 1940 10115 1940
+Wire Wire Line
+	10115 1940 10115 1915
+Wire Wire Line
+	10115 1915 10090 1915
+Wire Wire Line
+	10140 1600 10115 1600
+Wire Wire Line
+	10115 1600 10115 1625
+Wire Wire Line
+	10115 1625 10090 1625
+Wire Wire Line
+	10140 1500 10115 1500
+Wire Wire Line
+	10115 1500 10115 1475
+Wire Wire Line
+	10115 1475 10090 1475
+Wire Wire Line
+	8565 3320 8540 3320
+Wire Wire Line
+	8540 3320 8540 3295
+Wire Wire Line
+	8540 3295 8515 3295
+Wire Wire Line
+	8565 3420 8540 3420
+Wire Wire Line
+	8540 3420 8540 3445
+Wire Wire Line
+	8540 3445 8515 3445
+$Comp
+L Propeller-rescue:CONN_01X01-Propeller-rescue P21
+U 1 1 5836BFBE
+P 10395 6050
+F 0 "P21" H 10395 6150 50  0000 C CNN
+F 1 "CONN_01X01" V 10495 6050 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x01" H 10395 6050 50  0001 C CNN
+F 3 "" H 10395 6050 50  0000 C CNN
+	1    10395 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:CONN_01X02-Propeller-rescue P28
+U 1 1 583E4432
+P 9635 4495
+F 0 "P28" H 9635 4645 50  0000 C CNN
+F 1 "CONN_01X02" V 9735 4495 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x02" H 9635 4495 50  0001 C CNN
+F 3 "" H 9635 4495 50  0000 C CNN
+	1    9635 4495
+	1    0    0    -1  
+$EndComp
+$Comp
+L Propeller-rescue:CONN_01X01-Propeller-rescue P3
+U 1 1 583E52D4
+P 9635 4345
+F 0 "P3" H 9635 4445 50  0000 C CNN
+F 1 "CONN_01X01" V 9735 4345 50  0000 C CNN
+F 2 "Angrywasp:Pin_Header_Circular_1x01" H 9635 4345 50  0001 C CNN
+F 3 "" H 9635 4345 50  0000 C CNN
+	1    9635 4345
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 4825 4650 4825
+Wire Wire Line
+	4650 4825 6250 4825
+Wire Wire Line
+	4425 2250 4625 2250
+Wire Wire Line
+	4275 2250 4425 2250
+Wire Wire Line
+	4625 2850 4825 2850
+Wire Wire Line
+	4425 2750 4825 2750
+Wire Wire Line
+	4200 2850 4625 2850
+Wire Wire Line
+	4100 2750 4425 2750
+Wire Wire Line
+	2700 5275 2700 5450
+Wire Wire Line
+	2700 4875 2700 5075
+Wire Wire Line
+	2700 5075 2700 5275
+Wire Wire Line
+	1950 4675 1950 5275
+Wire Wire Line
+	2050 4875 2050 5275
+Wire Wire Line
+	2150 5075 2150 4650
+Wire Wire Line
+	2150 5275 2250 5275
+Wire Wire Line
+	2050 5275 2150 5275
+Wire Wire Line
+	2250 5275 2250 5475
+Wire Wire Line
+	2250 5275 2350 5275
+Wire Wire Line
+	2150 2100 2250 2100
+Wire Wire Line
+	2050 2100 2150 2100
+Wire Wire Line
+	1950 2100 1950 2150
+Wire Wire Line
+	3175 2550 3250 2550
+Wire Wire Line
+	3175 2450 3175 2550
+Wire Wire Line
+	3175 2350 3175 2450
+Wire Wire Line
+	7550 5800 7550 6050
+Wire Wire Line
+	6250 4825 7350 4825
+Wire Wire Line
+	7425 5100 7725 5100
+Wire Wire Line
+	7425 5500 7425 5600
+Wire Wire Line
+	7425 3550 7425 3850
+Wire Wire Line
+	6375 3450 6375 3750
+Wire Wire Line
+	7425 3450 7425 3550
+Wire Wire Line
+	7425 3450 7500 3450
+$EndSCHEMATC
