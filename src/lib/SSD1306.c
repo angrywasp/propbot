@@ -241,6 +241,15 @@ ssd1306_context_t *ssd1306_init(SSD1306_GEOMETRY geom, int scl, int sda)
     return cxt;
 }
 
+bool ssd1306_detect(ssd1306_context_t *cxt)
+{
+    int ack = 0;
+    i2c_start(cxt->i2c_cxt);
+    ack = i2c_writeByte(cxt->i2c_cxt, SSD1306_WRITE_ADDRESS);
+    i2c_stop(cxt->i2c_cxt);
+    return ack == 0;
+}
+
 void ssd1306_clear(ssd1306_context_t *cxt)
 {
     memset(cxt->buffer, 0, cxt->buffer_size);
@@ -250,59 +259,6 @@ void ssd1306_reset_display(ssd1306_context_t *cxt)
 {
     ssd1306_clear(cxt);
     ssd1306_display(cxt);
-}
-
-void ssd1306_display_on(ssd1306_context_t *cxt)
-{
-    _ssd1306_send_cmd(cxt, SSD1306_DISPLAYON);
-}
-
-void ssd1306_display_off(ssd1306_context_t *cxt)
-{
-    _ssd1306_send_cmd(cxt, SSD1306_DISPLAYOFF);
-}
-
-void ssd1306_set_pixel(ssd1306_context_t *cxt, ushort x, ushort y)
-{
-    ssd1306_set_pixel_color(cxt, x, y, cxt->color);
-}
-
-void ssd1306_set_pixel_color(ssd1306_context_t *cxt, ushort x, ushort y, SSD1306_COLOR color)
-{
-    if (x >= 0 && x < cxt->width && y >= 0 && y < cxt->height)
-    {
-        switch (color)
-        {
-        case SSD1306_COLOR_WHITE:
-            cxt->buffer[x + (y / 8) * cxt->width] |= (1 << (y & 7));
-            break;
-        case SSD1306_COLOR_BLACK:
-            cxt->buffer[x + (y / 8) * cxt->width] &= ~(1 << (y & 7));
-            break;
-        case SSD1306_COLOR_INVERSE:
-            cxt->buffer[x + (y / 8) * cxt->width] ^= (1 << (y & 7));
-            break;
-        }
-    }
-}
-
-void ssd1306_clear_pixel(ssd1306_context_t *cxt, ushort x, ushort y)
-{
-    if (x >= 0 && x < cxt->width && y >= 0 && y < cxt->height)
-    {
-        switch (cxt->color)
-        {
-        case SSD1306_COLOR_BLACK:
-            cxt->buffer[x + (y >> 3) * cxt->width] |= (1 << (y & 7));
-            break;
-        case SSD1306_COLOR_WHITE:
-            cxt->buffer[x + (y >> 3) * cxt->width] &= ~(1 << (y & 7));
-            break;
-        case SSD1306_COLOR_INVERSE:
-            cxt->buffer[x + (y >> 3) * cxt->width] ^= (1 << (y & 7));
-            break;
-        }
-    }
 }
 
 void ssd1306_display(ssd1306_context_t *cxt)
@@ -326,13 +282,14 @@ void ssd1306_display(ssd1306_context_t *cxt)
     i2c_stop(cxt->i2c_cxt);
 }
 
-bool ssd1306_detect(ssd1306_context_t *cxt)
+void ssd1306_display_on(ssd1306_context_t *cxt)
 {
-    int ack = 0;
-    i2c_start(cxt->i2c_cxt);
-    ack = i2c_writeByte(cxt->i2c_cxt, SSD1306_WRITE_ADDRESS);
-    i2c_stop(cxt->i2c_cxt);
-    return ack == 0;
+    _ssd1306_send_cmd(cxt, SSD1306_DISPLAYON);
+}
+
+void ssd1306_display_off(ssd1306_context_t *cxt)
+{
+    _ssd1306_send_cmd(cxt, SSD1306_DISPLAYOFF);
 }
 
 ushort ssd1306_string_width(char *text, ushort text_length)

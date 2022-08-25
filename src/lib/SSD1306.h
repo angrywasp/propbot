@@ -86,12 +86,12 @@ enum SSD1306_GEOMETRY {
 
 typedef struct
 {
-    i2c *i2c_cxt;
-    byte *buffer;
-    SSD1306_GEOMETRY geometry;
-    ushort width;
-    ushort height;
-    uint buffer_size;
+    volatile i2c *i2c_cxt;
+    volatile byte *buffer;
+    volatile SSD1306_GEOMETRY geometry;
+    volatile ushort width;
+    volatile ushort height;
+    volatile uint buffer_size;
     volatile SSD1306_COLOR color;
 } ssd1306_context_t;
 
@@ -99,9 +99,6 @@ ssd1306_context_t* ssd1306_init(SSD1306_GEOMETRY geom, int scl, int sda);
 bool ssd1306_detect(ssd1306_context_t* cxt);
 void ssd1306_clear(ssd1306_context_t* cxt);
 void ssd1306_reset_display(ssd1306_context_t* cxt);
-void ssd1306_set_pixel(ssd1306_context_t *cxt, ushort x, ushort y);
-void ssd1306_set_pixel_color(ssd1306_context_t *cxt, ushort x, ushort y, SSD1306_COLOR color);
-void ssd1306_clear_pixel(ssd1306_context_t *cxt, ushort x, ushort y);
 void ssd1306_display(ssd1306_context_t *cxt);
 
 void ssd1306_display_on(ssd1306_context_t *cxt);
