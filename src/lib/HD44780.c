@@ -1,18 +1,8 @@
-#ifdef DESKTOP
-    #include "./simulator.h"
-    #define clear() system("clear")//printf("\033[H\033[J")
-    #define gotoxy(x,y) system("tput cup x y")//printf("\033[%d;%dH", (y), (x))
-#endif
-
 #include "./HD44780.h"
 #include "./refs.h"
 
 static void _busy(volatile hd44780_context_t* cxt)
 {
-#ifdef DESKTOP
-    //don't wait in simulator
-    return;
-#endif
     bool isBusy = true;
     dir_in(cxt->d0);
     dir_in(cxt->d1);
@@ -108,11 +98,7 @@ hd44780_context_t* hd44780_init(int rs, int rw, int e, int d0, int d1, int d2, i
 
 void hd44780_clear(volatile hd44780_context_t* cxt)
 {
-#ifdef DESKTOP
-    clear();
-#else
     hd44780_instruct(cxt, 0b00000001);
-#endif
 }
 
 void hd44780_instruct(volatile hd44780_context_t* cxt, char data)
@@ -127,27 +113,19 @@ void hd44780_instruct(volatile hd44780_context_t* cxt, char data)
 
 void hd44780_data(volatile hd44780_context_t* cxt, char data)
 {
-#ifdef DESKTOP
-    putchar(data);
-#else
     _busy(cxt);
     lo(cxt->rw);
     hi(cxt->rs);
     hi(cxt->e);
     _parallel_send(cxt, data);
     lo(cxt->e);
-#endif
 }
 
 void hd44780_move(volatile hd44780_context_t* cxt, int x, int y)
 {
-#ifdef DESKTOP
-    gotoxy(x, y);
-#else
     int addr = (y - 1) * 64; //1 - 16
     addr += (x - 1) + 128; //1 - 2
     hd44780_instruct(cxt, addr);
-#endif
 }
 
 void hd44780_str(volatile hd44780_context_t* cxt, char* string)
