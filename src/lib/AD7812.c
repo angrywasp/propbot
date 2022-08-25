@@ -1,7 +1,3 @@
-#ifdef DESKTOP
-    #include "./simulator.h"
-#endif
-
 #include "./AD7812.h"
 #include "./refs.h"
 
@@ -24,18 +20,12 @@ static inline int _ad7812_transfer(volatile ad7812_context_t* cxt, int tx)
 {
     int rx = 0;
 
-#ifdef DESKTOP
-    adc_select_port(tx);
-#endif
-
     for (int i = 15; i >= 5; i--)
     {
         out(cxt->mosi, (tx >> i) & 1);
         hi(cxt->clk);
         lo(cxt->clk);
-#ifdef DESKTOP
-        adc_respond();
-#endif
+
         if (in(cxt->miso) == 1)
             rx |= 1 << i;
     }
