@@ -29,5 +29,6 @@ io_adc_binding_t* io_add_adc_binding(ad7812_context_t* adc_context, unsigned sho
 
 void io_switch(volatile io_switch_binding_t* b);
 void io_adc(volatile io_adc_binding_t* b);
+void io_joystick(volatile io_adc_binding_t* b);
 
 #endif

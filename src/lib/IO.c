@@ -6,6 +6,7 @@
 
 io_switch_binding_t* io_add_switch_binding(int pin, char* msg)
 {
+    dir_in(pin);
     io_switch_binding_t* b = (io_switch_binding_t*)malloc(sizeof(io_switch_binding_t));
     b->value = (io_binding_value_data_t*)malloc(sizeof(io_binding_value_data_t) + strlen(msg));
 
@@ -101,10 +102,8 @@ void io_joystick(volatile io_adc_binding_t* b)
 
     qsort(values, 5, sizeof(int), compare);
 
-    val = values[2] - 128;
-
-    if (val > -JOYSTICK_DEADZONE && val < JOYSTICK_DEADZONE)
-        val = 0;
+    if (val > 128 -JOYSTICK_DEADZONE && val < 128 + JOYSTICK_DEADZONE)
+        val = 128;
 
     if (val == b->value->lastVal)
     {
