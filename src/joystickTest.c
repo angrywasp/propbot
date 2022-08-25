@@ -10,7 +10,7 @@ volatile io_switch_binding_t *sw;
 
 int main()
 {
-    pause(100);
+    pause(1000);
 
     //init all IO pins to output low
     for (int i = 4; i <= 27; i++)
@@ -19,17 +19,15 @@ int main()
         dir_out(i);
     }
 
-    dir_in(4);
+    dir_in(19);
 
     ad7812_context_t* adc = ad7812_init(2, 3, 1, 0);
 
-    vr_x = io_add_adc_binding(adc, ad7812_A1, "X %d\n");
-    vr_y = io_add_adc_binding(adc, ad7812_A2, "Y %d\n");
+    vr_x = io_add_adc_binding(adc, ad7812_A7, "X %d\n");
+    vr_y = io_add_adc_binding(adc, ad7812_A8, "Y %d\n");
 
-    sw = io_add_switch_binding(4, "S %d\n");
+    sw = io_add_switch_binding(19, "S %d\n");
 
-    pause(100);
-    
     while(true)
     {
         io_joystick(vr_x);
