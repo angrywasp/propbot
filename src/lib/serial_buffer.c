@@ -5,7 +5,7 @@ static int length;
 static int read_index;
 static int write_index;
 
-char* buffer[SERIAL_BUFFER_SIZE] = {0};
+static char* buffer[SERIAL_BUFFER_SIZE] = {0};
 
 void serial_buffer_push(char* value)
 {
