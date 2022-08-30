@@ -1,17 +1,14 @@
 #ifndef __refs_H
 #define __refs_H
 
-#ifdef DESKTOP
-    #include "./simulator.h"
-#else
-    #include "simpletools.h"
-#endif
+#include "simpletools.h"
 
 #define bool char
 #define sbyte char
 #define byte unsigned char
 #define ushort unsigned short
 #define uint unsigned int
+#define ulong unsigned long
 #define true 1
 #define false 0
 
@@ -25,5 +22,7 @@
 #define lo(pin) low(pin)
 
 #define max(a,b) (((a) > (b)) ? (a) : (b))
+
+char* ftoa(char* buffer, float val);
 
 #endif

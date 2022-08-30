@@ -1,5 +1,5 @@
 #include "./AD7812.h"
-#include "./refs.h"
+#include "../refs.h"
 
 const int ad7812_A1 = 0x6040;
 const int ad7812_A2 = 0x6140;

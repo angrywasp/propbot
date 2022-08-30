@@ -1,6 +1,6 @@
 #include "simpletools.h"
 
-#include "./lib/NRF24L01.h"
+#include "./lib/drivers/NRF24L01.h"
 #include "./lib/serial_buffer.h"
 #include "./lib/refs.h"
 

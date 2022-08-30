@@ -1,8 +1,9 @@
 #include "simpletools.h"
 
-#include "./lib/AD7812.h"
-#include "./lib/SSD1306.h"
-#include "./lib/NRF24L01.h"
+#include "./lib/drivers/AD7812.h"
+#include "./lib/drivers/SSD1306.h"
+#include "./lib/drivers/NRF24L01.h"
+#include "./lib/modules/psu.h"
 #include "./lib/IO.h"
 #include "./lib/refs.h"
 
@@ -43,14 +44,10 @@ static byte *rf_addr = (byte *)"pbot";
 
 #define PAYLOAD_SIZE 6
 
-// based on a 22k/47k voltage divider with a lipo with a voltage range of 2.75-4.2v
-
-#define BATT_MAX 221
-#define BATT_MIN 145
-
 ssd1306_context_t *oled;
 ad7812_context_t *adc;
 nrf_context_t *nrf;
+psu_context_t * psu;
 
 char print_out[32] = {0};
 
@@ -90,7 +87,7 @@ static nrf_context_t *_init_transmitter()
 int main()
 {
     byte *tx_dat = (byte *)malloc(PAYLOAD_SIZE);
-
+    psu = psu_init(22000, 47000, 3.3f, 2.75f, 4.2f);
     oled = ssd1306_init(SSD1306_GEOMETRY_128_32, OLED_SCL, OLED_SDA);
     adc = ad7812_init(ADC_DIN, ADC_DOUT, ADC_CLK, ADC_CONVST);
     nrf = _init_transmitter();
@@ -106,7 +103,6 @@ int main()
     batt = io_add_adc_binding(adc, BATTERY_PORT, 0);
 
     ssd1306_clear(oled);
-    ssd1306_txt(oled, 0, 0, "Battery:");
 
     while (true)
     {
@@ -156,26 +152,26 @@ int main()
             sw_r->value->newValueReady = false;
         }
 
+        if (batt->value->newValueReady && batt->value->changed)
+        {
+            ssd1306_clear(oled);
+            ushort percent = psu_calculate_percent(psu, batt->value->lastVal);
+
+            sprintf(print_out, "%d%%", percent);
+            ssd1306_txt(oled, 0, 0, "Battery:");
+            ssd1306_txt(oled, 128 - (strlen(print_out) * 7), 0, print_out);
+
+            sprintf(print_out, "%d %d %d", psu->adc_min, psu->adc_max, batt->value->lastVal);
+            ssd1306_txt(oled, 0, 16, print_out);
+
+            batt->value->newValueReady = false;
+        }
+
         nrf_transmit(nrf, tx_dat, PAYLOAD_SIZE);
-
-        _partial_clear_oled(121, 16, 7, 16);
-
         if (nrf_status_tx_data_sent(nrf))
             ssd1306_txt(oled, 121, 16, "+");
         else
             ssd1306_txt(oled, 121, 16, "-");
-
-        if (batt->value->newValueReady && batt->value->changed)
-        {
-            ushort max = BATT_MAX - BATT_MIN;
-            ushort val = batt->value->lastVal - BATT_MIN;
-            ushort percent = (ushort)(((float)val / (float)max) * 100.0f);
-
-            _partial_clear_oled(100, 0, 28, 16);
-            sprintf(print_out, "%d%%", percent);
-            ssd1306_txt(oled, 128 - (strlen(print_out) * 7), 0, print_out);
-            batt->value->newValueReady = false;
-        }
 
         ssd1306_display(oled);
 

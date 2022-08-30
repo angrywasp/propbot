@@ -1,5 +1,5 @@
 #include "./SSD1306.h"
-#include "./refs.h"
+#include "../refs.h"
 
 static void _ssd1306_allocate_buffer(ssd1306_context_t *cxt)
 {

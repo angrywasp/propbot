@@ -1,10 +1,6 @@
-#ifdef DESKTOP
-    #include "./lib/simulator.h"
-#else
-    #include "simpletools.h"
-#endif
+#include "simpletools.h"
 
-#include "./lib/HD44780.h"
+#include "./lib/drivers/HD44780.h"
 #include "./lib/refs.h"
 
 int main()

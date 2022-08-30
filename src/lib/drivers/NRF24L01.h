@@ -105,7 +105,7 @@ is not at the head of the FIFO and an ack packet is transmitted, then the ack pa
         $1D   FEATURE         %00000000  have to do the ACTIVE cmd first        Enable or disable the dynamic payload, ack payload, and selective ack features
 */
 
-#include "./refs.h"
+#include "../refs.h"
 
 extern const byte nrf_CONFIG;
 extern const byte nrf_EN_AA;

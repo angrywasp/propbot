@@ -1,6 +1,6 @@
 #include "simpletools.h"
 
-#include "./lib/AD7812.h"
+#include "./lib/drivers/AD7812.h"
 #include "./lib/IO.h"
 #include "./lib/refs.h"
 

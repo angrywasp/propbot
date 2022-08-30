@@ -1,10 +1,6 @@
-#ifdef DESKTOP
-    #include "./lib/simulator.h"
-#else
-    #include "simpletools.h"
-#endif
+#include "simpletools.h"
 
-#include "./lib/AD7812.h"
+#include "./lib/drivers/AD7812.h"
 #include "./lib/IO.h"
 #include "./lib/refs.h"
 
@@ -40,10 +36,6 @@ void io();
 
 int main()
 {
-
-#ifdef DESKTOP
-    start_input_thread();
-#endif
     pause(100);
 
     for (int i = 4; i <= 23; i++)

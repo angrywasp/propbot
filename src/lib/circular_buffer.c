@@ -38,7 +38,7 @@ ushort circular_buffer_pop()
 void circular_buffer_lookahead(ushort* lookahead_buffer, ushort count)
 {
     if (count > CIRCULAR_BUFFER_SIZE)
-        return 0;
+        return;
 
     ushort index = read_index;
     for (int i = 0; i < count; i++)

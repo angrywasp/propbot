@@ -2,7 +2,7 @@
 #define __ssd1306_H
 
 #include "simplei2c.h"
-#include "./refs.h"
+#include "../refs.h"
 
 //fonmt table constants
 #define JUMPTABLE_BYTES 4
@@ -86,12 +86,12 @@ enum SSD1306_GEOMETRY {
 
 typedef struct
 {
-    volatile i2c *i2c_cxt;
-    volatile byte *buffer;
-    volatile SSD1306_GEOMETRY geometry;
-    volatile ushort width;
-    volatile ushort height;
-    volatile uint buffer_size;
+    i2c *i2c_cxt;
+    byte *buffer;
+    SSD1306_GEOMETRY geometry;
+    ushort width;
+    ushort height;
+    uint buffer_size;
     volatile SSD1306_COLOR color;
 } ssd1306_context_t;
 

@@ -1,6 +1,6 @@
 #include "simpletools.h"
 
-#include "./lib/SSD1306.h"
+#include "./lib/drivers/SSD1306.h"
 #include "./lib/refs.h"
 
 #define SDA 1

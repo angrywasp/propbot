@@ -1,5 +1,5 @@
 #include "./NRF24L01.h"
-#include "./refs.h"
+#include "../refs.h"
 
 const byte nrf_CONFIG = 0x00;
 const byte nrf_EN_AA = 0x01;
@@ -52,7 +52,6 @@ static byte _spi_transfer(volatile nrf_context_t* cxt, byte value)
 
     return rx;
 }
-
 
 static byte _nrf_R_REGISTER_byte(volatile nrf_context_t* cxt, byte reg)
 {
@@ -146,21 +145,19 @@ byte nrf_set_power_radio(volatile nrf_context_t* cxt, bool on)
     return _nrf_R_REGISTER_byte(cxt, nrf_CONFIG);
 }
 
-//mode: 1 = Primary Rx, 0 = Primary Tx  (and always power on and 2-byte crc) 
+//mode: 1 = Primary Rx, 0 = Primary Tx
 byte nrf_set_primary_mode(volatile nrf_context_t* cxt, byte mode)
 {
     _nrf_W_REGISTER_byte(cxt, nrf_CONFIG, 0b00001110 + mode);
     return _nrf_R_REGISTER_byte(cxt, nrf_CONFIG);
 }
 
-//bits 0-5 represents pipes 0-5. pipe = 1 means enabled
 byte nrf_enable_rx_pipes(volatile nrf_context_t* cxt, byte pipe)
 {
     _nrf_W_REGISTER_byte(cxt, nrf_EN_RXADDR, pipe);
     return _nrf_R_REGISTER_byte(cxt, nrf_EN_RXADDR);
 }
 
-//112 or 113 is good
 byte nrf_set_rf_channel(volatile nrf_context_t* cxt, byte channel)
 {
     _nrf_W_REGISTER_byte(cxt, nrf_RF_CH, channel);
@@ -203,7 +200,7 @@ byte nrf_set_transmitter_power(volatile nrf_context_t* cxt, sbyte dB)
     return _nrf_R_REGISTER_byte(cxt, nrf_RF_SETUP);
 }
 
-//rate: 1 = 2MB/s, 0 = 1MB/s
+//1 = 2MB/s, 0 = 1MB/s
 byte nrf_set_data_rate(volatile nrf_context_t* cxt, byte rate)
 {
     byte value = _nrf_R_REGISTER_byte(cxt, nrf_RF_SETUP) & !0b00001000;
@@ -212,19 +209,12 @@ byte nrf_set_data_rate(volatile nrf_context_t* cxt, byte rate)
     return _nrf_R_REGISTER_byte(cxt, nrf_RF_SETUP);
 }
 
-//Set payload width in specified pipe - max 32 bytes. 0 = pipe not used 
 byte nrf_set_payload_width(volatile nrf_context_t* cxt, byte pipe, byte width)
 {
     _nrf_W_REGISTER_byte(cxt, nrf_RX_PW_P0 + pipe, width);
     return _nrf_R_REGISTER_byte(cxt, nrf_RX_PW_P0 + pipe);
 }
 
-/*
-Write the unique address to be used by the rx radio - for a given pipe                      
-address width is set to 3-5 bytes in SETUP_AW, use this value                                                                                                                      
-pipes 0 and 1 takes full address width, but pipes 2-5 only uses the LSB, don't know what 
-happens when attempting to write more address bytes in this case 
-*/
 byte nrf_write_rx_pipe_address(volatile nrf_context_t* cxt, byte pipe, byte* address)
 {
     byte addr_width = _nrf_R_REGISTER_byte(cxt, nrf_SETUP_AW);

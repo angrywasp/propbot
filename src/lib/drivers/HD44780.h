@@ -86,7 +86,7 @@ INSTRUCTION SET
    └──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┘
 */
 
-#include "./refs.h"
+#include "../refs.h"
 
 typedef struct
 {

@@ -1,5 +1,5 @@
 #include "./HD44780.h"
-#include "./refs.h"
+#include "../refs.h"
 
 static void _busy(volatile hd44780_context_t* cxt)
 {
