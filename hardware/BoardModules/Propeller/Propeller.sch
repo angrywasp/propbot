@@ -14,7 +14,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Propeller-rescue:24LC512-Propeller-rescue U2
+L Angrywasp-IC:24LC512 U2
 U 1 1 57FAC293
 P 3650 2400
 F 0 "U2" H 3650 2675 60  0000 C CNN
@@ -25,7 +25,7 @@ F 3 "" H 3650 2100 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:74LVC126A-Propeller-rescue U4
+L Angrywasp-IC:74LVC126A U4
 U 1 1 57FAC5BC
 P 6900 3750
 F 0 "U4" H 6900 4150 60  0000 C CNN
@@ -36,7 +36,7 @@ F 3 "" H 6675 3575 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:AD7812-Propeller-rescue U3
+L Angrywasp-IC:AD7812 U3
 U 1 1 57FAC655
 P 6800 5450
 F 0 "U3" H 6800 4905 60  0000 C CNN
@@ -179,7 +179,7 @@ F 3 "" H 4275 1825 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:Propeller-Propeller-rescue U1
+L Angrywasp-IC:Propeller U1
 U 1 1 57FB467F
 P 2100 3400
 F 0 "U1" H 2100 3325 60  0000 C CNN
@@ -368,9 +368,9 @@ Text GLabel 7525 4100 2    60   Input ~ 0
 3Y
 Text GLabel 7525 3800 2    60   Input ~ 0
 4Y
-Text GLabel 3450 3225 2    60   Input ~ 0
-1Y
 Text GLabel 3450 3350 2    60   Input ~ 0
+1Y
+Text GLabel 3450 3225 2    60   Input ~ 0
 2Y
 Text GLabel 3450 3100 2    60   Input ~ 0
 3Y
@@ -423,7 +423,7 @@ DIN
 Text GLabel 7775 5450 2    60   Input ~ 0
 DOUT
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P1
+L Angrywasp-Conn:CONN_01X02 P1
 U 1 1 57FDF9AA
 P 8755 4920
 F 0 "P1" H 8755 5070 50  0000 C CNN
@@ -462,7 +462,7 @@ TX
 Text GLabel 9385 4320 0    60   Input ~ 0
 RESn
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P4
+L Angrywasp-Conn:CONN_01X02 P4
 U 1 1 57FE3FA9
 P 9635 4920
 F 0 "P4" H 9635 5070 50  0000 C CNN
@@ -474,14 +474,12 @@ F 3 "" H 9635 4920 50  0000 C CNN
 $EndComp
 Text GLabel 9385 4845 0    60   Input ~ 0
 3A
-Text GLabel 9385 4470 0    60   Input ~ 0
-2A
 Text GLabel 9410 4620 0    60   Input ~ 0
-1A
+2A
 Text GLabel 9385 4995 0    60   Input ~ 0
 4A
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P7
+L Angrywasp-Conn:CONN_01X02 P7
 U 1 1 57FEAA7B
 P 8700 1200
 F 0 "P7" H 8700 1350 50  0000 C CNN
@@ -492,7 +490,7 @@ F 3 "" H 8700 1200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P8
+L Angrywasp-Conn:CONN_01X02 P8
 U 1 1 57FEB234
 P 8700 1675
 F 0 "P8" H 8700 1825 50  0000 C CNN
@@ -503,7 +501,7 @@ F 3 "" H 8700 1675 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P9
+L Angrywasp-Conn:CONN_01X02 P9
 U 1 1 57FEB2B4
 P 8725 2250
 F 0 "P9" H 8725 2400 50  0000 C CNN
@@ -514,7 +512,7 @@ F 3 "" H 8725 2250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P10
+L Angrywasp-Conn:CONN_01X02 P10
 U 1 1 57FEB339
 P 8750 2825
 F 0 "P10" H 8750 2975 50  0000 C CNN
@@ -557,7 +555,7 @@ P14
 Text GLabel 925  4150 0    60   Input ~ 0
 P15
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P15
+L Angrywasp-Conn:CONN_01X02 P15
 U 1 1 58001F98
 P 9525 2250
 F 0 "P15" H 9525 2400 50  0000 C CNN
@@ -568,7 +566,7 @@ F 3 "" H 9525 2250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P16
+L Angrywasp-Conn:CONN_01X02 P16
 U 1 1 58001F9E
 P 9550 2825
 F 0 "P16" H 9550 2975 50  0000 C CNN
@@ -587,7 +585,7 @@ P15
 Text GLabel 9300 2900 0    60   Input ~ 0
 P14
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P17
+L Angrywasp-Conn:CONN_01X02 P17
 U 1 1 5800212E
 P 10390 3820
 F 0 "P17" H 10390 3970 50  0000 C CNN
@@ -598,7 +596,7 @@ F 3 "" H 10390 3820 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P18
+L Angrywasp-Conn:CONN_01X02 P18
 U 1 1 58002134
 P 10390 3410
 F 0 "P18" H 10390 3560 50  0000 C CNN
@@ -617,7 +615,7 @@ P19
 Text GLabel 10140 3485 0    60   Input ~ 0
 P18
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P2
+L Angrywasp-Conn:CONN_01X02 P2
 U 1 1 58009717
 P 8740 4405
 F 0 "P2" H 8740 4555 50  0000 C CNN
@@ -628,7 +626,7 @@ F 3 "" H 8740 4405 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P6
+L Angrywasp-Conn:CONN_01X02 P6
 U 1 1 5833B0B7
 P 9570 3330
 F 0 "P6" H 9570 3480 50  0000 C CNN
@@ -643,7 +641,7 @@ P11
 Text GLabel 9320 3405 0    60   Input ~ 0
 P10
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P11
+L Angrywasp-Conn:CONN_01X02 P11
 U 1 1 5833B2FB
 P 9570 3865
 F 0 "P11" H 9570 4015 50  0000 C CNN
@@ -658,7 +656,7 @@ P9
 Text GLabel 9320 3940 0    60   Input ~ 0
 P8
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P19
+L Angrywasp-Conn:CONN_01X02 P19
 U 1 1 5833B8DE
 P 10375 2955
 F 0 "P19" H 10375 3105 50  0000 C CNN
@@ -673,7 +671,7 @@ P21
 Text GLabel 10125 3030 0    60   Input ~ 0
 P20
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P14
+L Angrywasp-Conn:CONN_01X02 P14
 U 1 1 5833BACE
 P 10365 2475
 F 0 "P14" H 10365 2625 50  0000 C CNN
@@ -688,7 +686,7 @@ P23
 Text GLabel 10115 2550 0    60   Input ~ 0
 P22
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P13
+L Angrywasp-Conn:CONN_01X02 P13
 U 1 1 5833BCF2
 P 10340 1990
 F 0 "P13" H 10340 2140 50  0000 C CNN
@@ -703,7 +701,7 @@ P5
 Text GLabel 10090 2065 0    60   Input ~ 0
 P4
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P12
+L Angrywasp-Conn:CONN_01X02 P12
 U 1 1 5833BED3
 P 10340 1550
 F 0 "P12" H 10340 1700 50  0000 C CNN
@@ -718,7 +716,7 @@ P7
 Text GLabel 10090 1625 0    60   Input ~ 0
 P6
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P5
+L Angrywasp-Conn:CONN_01X02 P5
 U 1 1 5833C3B7
 P 8765 3370
 F 0 "P5" H 8765 3520 50  0000 C CNN
@@ -1399,7 +1397,7 @@ Wire Wire Line
 Wire Wire Line
 	8540 3445 8515 3445
 $Comp
-L Propeller-rescue:CONN_01X01-Propeller-rescue P21
+L Angrywasp-Conn:CONN_01X01 P21
 U 1 1 5836BFBE
 P 10395 6050
 F 0 "P21" H 10395 6150 50  0000 C CNN
@@ -1410,7 +1408,7 @@ F 3 "" H 10395 6050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:CONN_01X02-Propeller-rescue P28
+L Angrywasp-Conn:CONN_01X02 P28
 U 1 1 583E4432
 P 9635 4495
 F 0 "P28" H 9635 4645 50  0000 C CNN
@@ -1421,7 +1419,7 @@ F 3 "" H 9635 4495 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Propeller-rescue:CONN_01X01-Propeller-rescue P3
+L Angrywasp-Conn:CONN_01X01 P3
 U 1 1 583E52D4
 P 9635 4345
 F 0 "P3" H 9635 4445 50  0000 C CNN
@@ -1495,4 +1493,6 @@ Wire Wire Line
 	7425 3450 7425 3550
 Wire Wire Line
 	7425 3450 7500 3450
+Text GLabel 9385 4470 0    60   Input ~ 0
+1A
 $EndSCHEMATC

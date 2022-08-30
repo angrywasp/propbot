@@ -16,6 +16,8 @@ function build()
     rm -rf $dir/build
     mkdir $dir/build
     mkdir $dir/build/fonts
+    mkdir $dir/build/drivers
+    mkdir $dir/build/modules
 
     includes=(
         $gcc/include/Utility/libsimpletools
@@ -24,16 +26,18 @@ function build()
     )
 
     libs=(
+        refs
         IO
-        AD7812
-        HD44780
-        NRF24L01
-        SSD1306
         serial_buffer
         circular_buffer
+        drivers/AD7812
+        drivers/HD44780
+        drivers/NRF24L01
+        drivers/SSD1306
         #fonts/dseg14_32
         #fonts/orbitron_15
         fonts/dejavu_sans_mono_12
+        modules/psu
     )
 
     includeDirectories="-I . -L ."
