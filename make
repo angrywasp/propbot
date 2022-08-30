@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash -e
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 mode=cmm
-optimization=O3
-port=COM3
-board="-D loader=rom -D clkfreq=24000000 -D clkmode=xtal1+pll4x -D baud-rate=115200 -D loader-baud-rate=115200"
+optimization=O2
+port=COM8
+board="-D loader=rom -D clkfreq=96000000 -D clkmode=xtal1+pll16x -D baud-rate=115200 -D loader-baud-rate=115200"
 
 gcc=~/propeller-gcc
 
@@ -15,6 +15,9 @@ function build()
 {
     rm -rf $dir/build
     mkdir $dir/build
+    mkdir $dir/build/fonts
+    mkdir $dir/build/drivers
+    mkdir $dir/build/modules
 
     includes=(
         $gcc/include/Utility/libsimpletools
@@ -23,9 +26,18 @@ function build()
     )
 
     libs=(
+        refs
         IO
-        AD7812
-        SPI
+        serial_buffer
+        circular_buffer
+        drivers/AD7812
+        drivers/HD44780
+        drivers/NRF24L01
+        drivers/SSD1306
+        #fonts/dseg14_32
+        #fonts/orbitron_15
+        fonts/dejavu_sans_mono_12
+        modules/psu
     )
 
     includeDirectories="-I . -L ."
@@ -51,8 +63,7 @@ function build()
 
 function install()
 {
-    #proploader.exe -v -p $port $board -r build/$1.elf
-    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe COM3 --ram build/$1.binary
+    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --eeprom build/$1.binary # --listen 115200
 }
 
 $1 $2

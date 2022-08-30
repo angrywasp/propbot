@@ -1,30 +1,27 @@
 #include "simpletools.h"
 
-#define true 1
-#define false 0
+#include "./lib/refs.h"
 
-#define dira DIRA
-#define outa OUTA
-
-#define dir_out(pin) set_direction(pin, 1)
-#define dir_in(pin) set_direction(pin, 0)
-
-#define out(pin, val) set_output(pin, val)
-#define in(pin) get_state(pin)
-
-#define hi(pin) high(pin)
-#define lo(pin) low(pin)
-
-int main()
+void main()
 {
-    dir_out(20);
-    hi(20);
-
-    while (true)
+    //byte x = 0;
+    for (int i = 4; i < 27; i++)
     {
+        lo(i);
+        dir_out(i);
+    }
+
+    while(true)
+    {
+        hi(16);
         pause(1000);
-        lo(20);
+        lo(16);
         pause(1000);
-        hi(20);
+        //for (int i = 0; i < 8; i++)
+        //    out(i + 4, (x >> i) & 0x01);
+            
+        //printf("%d\n", x);
+        //x++;
+        //pause(1000);
     }
 }

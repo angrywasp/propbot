@@ -2,6 +2,11 @@ build
 **/bin
 **/obj
 
-pcb/*.*-bak
-pcb/*-cache.lib
-pcb/fp-info-cache
+hardware/**/**/export
+hardware/**/**/*.*-bak
+hardware/**/**/*-cache.lib
+hardware/**/**/*-rescue.dcm
+hardware/**/**/*-rescue.lib
+hardware/**/**/*.net
+hardware/**/**/fp-info-cache
+hardware/**/**/sym-lib-table

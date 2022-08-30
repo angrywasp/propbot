@@ -14,12 +14,13 @@ namespace PropToolProgram
 
     //arguments
     //1: Port
-    //2: flash destination (eeprom or ram), optional. if doesn't exit, flash to eeprom
+    //2: flash destination (--eeprom or --ram), optional. if doesn't exit, flash to eeprom
     //3: Program to flash
+    //4: leave port open and listen (--listen <baud>), optional. Default close port after uploading
 
     //examples
     //PropTool.exe --eeprom ./SpinProgram.binary
-    //PropTool.exe --ram ./SpinProgram.binary
+    //PropTool.exe --ram ./SpinProgram.binary --listen 115200
     static class Program
     {
         [STAThread]
@@ -70,19 +71,29 @@ namespace PropToolProgram
                     PropTool p = new PropTool();
                     p.OpenPort(args[0]);
 
-                    if (p.LoadBinaryFile(prog, lt))
+                    bool loaded = p.LoadBinaryFile(prog, lt);
+
+                    if (loaded)
                         Console.WriteLine("OK!");
                     else
+                    {
                         Console.WriteLine("ERROR!");
-                    
-                    p.ChangeBaudRate();
+                        return;
+                    }
 
+                    if (c["listen"] == null)
+                        return;
+
+                    int baud = int.Parse(c["listen"].Value);
+
+                    p.ChangeBaudRate(baud);
+                    Thread.Sleep(500);
                     p.Listen();
 
-                    while(true)
+                    while (true)
                     {
                         Console.ReadKey();
-                        
+
                         p.ClosePort();
                         break;
                     }
@@ -120,19 +131,23 @@ namespace PropToolProgram
                 port.Open();
         }
 
-        public void ChangeBaudRate()
+        public void ChangeBaudRate(int baud)
         {
             if (!port.IsOpen)
                 return;
 
+            Console.WriteLine($"Changing baud rate to {baud}");
             port.DiscardInBuffer();
             port.DiscardOutBuffer();
-            port.BaudRate = 300000;
+            port.BaudRate = baud;
         }
 
         public void Listen()
         {
-            port.DataReceived += (s, e) => {
+            port.DiscardInBuffer();
+            port.DiscardOutBuffer();
+            port.DataReceived += (s, e) =>
+            {
                 Console.Write(port.ReadExisting());
             };
         }
@@ -196,7 +211,7 @@ namespace PropToolProgram
 
         public void Reset()
         {
-        	Console.WriteLine("Resetting device");
+            Console.WriteLine("Resetting device");
             port.RtsEnable = port.DtrEnable = true;
             Thread.Sleep(50);
             port.RtsEnable = port.DtrEnable = false;
@@ -311,5 +326,88 @@ namespace PropToolProgram
         }
 
         #endregion
+    }
+
+    public class CmdOption
+    {
+        private string flag;
+        private string value;
+
+        public string Flag => flag;
+
+        public string Value => value;
+
+        public CmdOption(string flag, string value)
+        {
+            this.flag = flag;
+            this.value = value;
+        }
+    }
+
+    public class Cmd
+    {
+        private List<CmdOption> options = new List<CmdOption>();
+
+        public CmdOption this[string flag]
+        {
+            get
+            {
+                string f1 = string.IsNullOrEmpty(flag) ? null : flag.ToLower().Trim(new char[] { '-' });
+
+                for (int i = 0; i < options.Count; i++)
+                {
+                    string f2 = string.IsNullOrEmpty(options[i].Flag) ? null : options[i].Flag.ToLower().Trim(new char[] { '-' });
+                    if (f2 == f1)
+                        return options[i];
+                }
+
+                return null;
+            }
+        }
+
+        public static Cmd Parse(string[] args)
+        {
+            Cmd cmd = new Cmd();
+
+            if (args == null)
+                return cmd;
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                bool isFlag = args[i].StartsWith("-");
+                bool hasParam = (i + 1) < args.Length ? !args[i + 1].StartsWith("-") : false;
+
+                string parameter = hasParam ? args[i + 1] : null;
+                string arg = args[i].TrimStart(new char[] { '-' });
+
+                if (isFlag)
+                {
+                    char[] argChars = arg.ToCharArray();
+
+                    if (args[i].StartsWith("--"))
+                        cmd.Push(arg, parameter);
+                    else
+                    {
+                        if (arg.Length == 1)
+                            cmd.Push(arg, parameter);
+                        else
+                            for (int c = 0; c < argChars.Length; c++)
+                                cmd.Push(argChars[c].ToString(), null);
+                    }
+
+                    if (argChars.Length == 1 && hasParam)
+                        i++;
+                }
+                else
+                    cmd.Push(null, arg);
+            }
+
+            return cmd;
+        }
+
+        public void Push(string flag, string value)
+        {
+            options.Add(new CmdOption(flag, value));
+        }
     }
 }

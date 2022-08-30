@@ -3,7 +3,17 @@
     "files.associations": {
         "*.h": "c",
         "*.dat": "hex",
-        "random": "c"
+        "random": "c",
+        "iosfwd": "c",
+        "functional": "c",
+        "lcdtestc": "cpp",
+        "xtr1common": "c",
+        "type_traits": "c",
+        "cstddef": "c",
+        "xstring": "c",
+        "xutility": "c",
+        "*.tcc": "c",
+        "string": "c"
     },
     "terminal.integrated.env.windows": {
         "CHERE_INVOKING": "1" ,
