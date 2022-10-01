@@ -101,6 +101,7 @@ void io_joystick(volatile io_adc_binding_t* b)
     }
 
     qsort(values, 5, sizeof(int), compare);
+    val = values[2];
 
     if (val > 128 -JOYSTICK_DEADZONE && val < 128 + JOYSTICK_DEADZONE)
         val = 128;
