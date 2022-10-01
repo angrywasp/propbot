@@ -1,6 +1,6 @@
 #include "refs.h"
 
-char* ftoa(char* buffer, float val)
+void ftoa(char* buffer, float val)
 {
     uint x = (uint)val;
     val -= (double)x;

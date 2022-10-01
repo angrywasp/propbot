@@ -23,6 +23,6 @@
 
 #define max(a,b) (((a) > (b)) ? (a) : (b))
 
-char* ftoa(char* buffer, float val);
+void ftoa(char* buffer, float val);
 
 #endif
