@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "refs.h": "c"
     },
     "editor.minimap.enabled": false,
     //"editor.fontFamily": "'Ubuntu Mono', monospace",

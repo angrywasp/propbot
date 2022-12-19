@@ -1,20 +1,15 @@
 #include "simpletools.h"
 
+#include "./lib/modules/AnalogProp.h"
 #include "./lib/refs.h"
 
 static int x = 0;
 void main()
 {
     //wait for serial port
-    pause(3000);
+    pause(1000);
 
-    //ad7812_context_t* a = ad7812_init(2, 3, 1, 0);
-
-    for (int i = 4; i < 27; i++)
-    {
-        lo(i);
-        dir_out(i);
-    }
+    analogprop_context_t* cxt = analogprop_init();
 
     while(true)
     {

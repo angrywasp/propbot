@@ -4,8 +4,8 @@ dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 mode=cmm
 optimization=O2
-port=COM8
-board="-D loader=rom -D clkfreq=96000000 -D clkmode=xtal1+pll16x -D baud-rate=115200 -D loader-baud-rate=115200"
+port=${PORT}
+board="-D loader=rom -D clkfreq=15625000 -D clkmode=xtal1+pll1x"
 
 gcc=~/propeller-gcc
 
@@ -37,7 +37,8 @@ function build()
         #fonts/dseg14_32
         #fonts/orbitron_15
         fonts/dejavu_sans_mono_12
-        modules/psu
+        modules/PSU
+        modules/AnalogProp
     )
 
     includeDirectories="-I . -L ."
@@ -63,7 +64,7 @@ function build()
 
 function install()
 {
-    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --eeprom build/$1.binary # --listen 115200
+    $dir/tools/PropTool/bin/Release/net6.0/PropTool.exe $port --eeprom build/$1.binary --listen 115200
 }
 
 $1 $2
