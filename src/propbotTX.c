@@ -3,7 +3,7 @@
 #include "./lib/drivers/AD7812.h"
 #include "./lib/drivers/SSD1306.h"
 #include "./lib/drivers/NRF24L01.h"
-#include "./lib/modules/psu.h"
+#include "./lib/modules/PSU.h"
 #include "./lib/IO.h"
 #include "./lib/refs.h"
 

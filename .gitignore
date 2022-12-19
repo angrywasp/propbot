@@ -1,7 +1,7 @@
 build
 **/bin
 **/obj
-
+.DS_Store
 hardware/**/**/export
 hardware/**/**/*.*-bak
 hardware/**/**/*-cache.lib
